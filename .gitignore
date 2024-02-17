@@ -1,0 +1,22 @@
+
+# Ignorar directorios de compilación
+bin/
+obj/
+
+# Ignorar archivos de configuración específicos del entorno
+appsettings.json
+appsettings.*.json
+
+# Ignorar archivos y directorios de Visual Studio
+.vs/
+*.user
+*.userosscache
+*.suo
+
+# Ignorar paquetes NuGet
+packages/
+
+# Ignorar archivos de compilación
+*.dll
+*.exe
+*.pdb
