@@ -12,6 +12,7 @@ appsettings.*.json
 *.user
 *.userosscache
 *.suo
+.vscode
 
 # Ignorar paquetes NuGet
 packages/
