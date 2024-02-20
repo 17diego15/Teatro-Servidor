@@ -1,22 +1,30 @@
+using Data;
+using Business;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+var isRunningInDocker = Environment.GetEnvironmentVariable("DOCKER_CONTAINER") == "true";
+var keyString = isRunningInDocker ? "ServerDB_Docker" : "ServerDB_Local";
+var connectionString = builder.Configuration.GetConnectionString(keyString);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddDbContext<TeatroContext>(options =>
+    options.UseSqlServer(connectionString));
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
