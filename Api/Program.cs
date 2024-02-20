@@ -18,6 +18,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<TeatroContext>(options =>
     options.UseSqlServer(connectionString));
 
+builder.Services.AddScoped<ObrasService>();
+builder.Services.AddScoped<IObraRepository, ObrasRepository>();
 
 
 var app = builder.Build();
@@ -25,6 +27,9 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 
 //app.UseHttpsRedirection();
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseAuthorization();
 
