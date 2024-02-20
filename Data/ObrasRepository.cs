@@ -20,28 +20,30 @@ public class ObrasRepository : IObraRepository
         return _context.Obras.ToList();
     }
 
+    public Obras? Get(int id)
+    {
+        return _context.Obras.FirstOrDefault(usuario => usuario.ObraID == id);
+    }
+
     public void Add(Obras obras)
     {
-        throw new NotImplementedException();
+        _context.Obras.Add(obras);
+        _context.SaveChanges();
     }
 
     public void Delete(int id)
     {
-        throw new NotImplementedException();
-    }
-
-    public Obras? Get(int id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public List<Obras> GetUsuarios()
-    {
-        throw new NotImplementedException();
+        var obras = _context.Obras.FirstOrDefault(obras => obras.ObraID == id);
+        if (obras != null)
+        {
+            _context.Obras.Remove(obras);
+            _context.SaveChanges();
+        }
     }
 
     public void Put(Obras obras)
     {
-        throw new NotImplementedException();
+        _context.Obras.Update(obras);
+        _context.SaveChanges();
     }
 }
