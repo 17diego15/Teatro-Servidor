@@ -84,7 +84,7 @@ namespace Data.Migrations
             migrationBuilder.InsertData(
                 table: "Obras",
                 columns: new[] { "ObraID", "Director", "Duración", "Imagen", "Precio", "Sinopsis", "Titulo" },
-                values: new object[] { 1, "gregrqe", "greqgre", "grgre", 12m, "gregq", "gfgrqe" });
+                values: new object[] { 1, "gregrqe", "greqgre", "../assets/impulso.jpg", 12m, "gregq", "gfgrqe" });
 
             migrationBuilder.InsertData(
                 table: "Salas",

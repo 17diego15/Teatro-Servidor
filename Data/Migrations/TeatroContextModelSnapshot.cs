@@ -120,7 +120,7 @@ namespace Data.Migrations
                             ObraID = 1,
                             Director = "gregrqe",
                             Duración = "greqgre",
-                            Imagen = "grgre",
+                            Imagen = "../assets/impulso.jpg",
                             Precio = 12m,
                             Sinopsis = "gregq",
                             Titulo = "gfgrqe"

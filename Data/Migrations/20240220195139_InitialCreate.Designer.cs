@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(TeatroContext))]
-    [Migration("20240220174542_InitialCreate")]
+    [Migration("20240220195139_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -123,7 +123,7 @@ namespace Data.Migrations
                             ObraID = 1,
                             Director = "gregrqe",
                             Duración = "greqgre",
-                            Imagen = "grgre",
+                            Imagen = "../assets/impulso.jpg",
                             Precio = 12m,
                             Sinopsis = "gregq",
                             Titulo = "gfgrqe"

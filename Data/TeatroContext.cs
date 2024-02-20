@@ -26,13 +26,11 @@ namespace Data
                new Funciones { FunciónID = 1, SalaID = 1, Fecha = new DateTime(2024, 2, 20), Hora = "20:00" }
                 );
             modelBuilder.Entity<Obras>().HasData(
-                new Obras { ObraID = 1, Titulo = "gfgrqe", Director = "gregrqe", Sinopsis = "gregq", Duración = "greqgre", Precio = 12, Imagen = "grgre" }
+                new Obras { ObraID = 1, Titulo = "gfgrqe", Director = "gregrqe", Sinopsis = "gregq", Duración = "greqgre", Precio = 12, Imagen = "../assets/impulso.jpg" }
                 );
             modelBuilder.Entity<Sala>().HasData(
                 new Sala { SalaID = 1, Nombre = "gfgrqe", Capacidad = 120}
                 );
         }
-
-
     }
 }
