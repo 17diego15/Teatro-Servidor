@@ -21,6 +21,9 @@ builder.Services.AddDbContext<TeatroContext>(options =>
 builder.Services.AddScoped<ObrasService>();
 builder.Services.AddScoped<IObraRepository, ObrasRepository>();
 
+builder.Services.AddScoped<UsuarioService>();
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+
 
 var app = builder.Build();
 
