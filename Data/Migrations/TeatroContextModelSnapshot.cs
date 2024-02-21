@@ -54,6 +54,10 @@ namespace Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FunciónID"));
 
+                    b.Property<string>("Desponibilidad")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
@@ -72,6 +76,7 @@ namespace Data.Migrations
                         new
                         {
                             FunciónID = 1,
+                            Desponibilidad = "Si",
                             Fecha = new DateTime(2024, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Hora = "20:00",
                             SalaID = 1
@@ -137,6 +142,26 @@ namespace Data.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Models.Reservas", b =>
+                {
+                    b.Property<int>("ReservaID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReservaID"));
+
+                    b.Property<decimal?>("CantidadAsientos")
+                        .IsRequired()
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("FunciónID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ReservaID");
+
+                    b.ToTable("Reservas");
+                });
+
             modelBuilder.Entity("Models.Sala", b =>
                 {
                     b.Property<int>("SalaID")
@@ -162,7 +187,45 @@ namespace Data.Migrations
                         {
                             SalaID = 1,
                             Capacidad = 120,
-                            Nombre = "gfgrqe"
+                            Nombre = "Sala 1"
+                        });
+                });
+
+            modelBuilder.Entity("Models.Usuario", b =>
+                {
+                    b.Property<int>("UsuarioID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UsuarioID"));
+
+                    b.Property<string>("Contraseña")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NombreUsuario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UsuarioID");
+
+                    b.ToTable("Usuarios");
+
+                    b.HasData(
+                        new
+                        {
+                            UsuarioID = 1,
+                            Contraseña = "1234",
+                            IsAdmin = true,
+                            Nombre = "Diego Gimenez Sancho",
+                            NombreUsuario = "17diego15"
                         });
                 });
 #pragma warning restore 612, 618

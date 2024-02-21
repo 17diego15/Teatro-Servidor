@@ -34,7 +34,8 @@ namespace Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     SalaID = table.Column<int>(type: "int", nullable: true),
                     Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Hora = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Hora = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Desponibilidad = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -60,6 +61,20 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Reservas",
+                columns: table => new
+                {
+                    ReservaID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FunciónID = table.Column<int>(type: "int", nullable: true),
+                    CantidadAsientos = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reservas", x => x.ReservaID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Salas",
                 columns: table => new
                 {
@@ -73,6 +88,22 @@ namespace Data.Migrations
                     table.PrimaryKey("PK_Salas", x => x.SalaID);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Usuarios",
+                columns: table => new
+                {
+                    UsuarioID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NombreUsuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Contraseña = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsAdmin = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Usuarios", x => x.UsuarioID);
+                });
+
             migrationBuilder.InsertData(
                 table: "Actores",
                 columns: new[] { "ActorId", "Nombre" },
@@ -80,8 +111,8 @@ namespace Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Funciones",
-                columns: new[] { "FunciónID", "Fecha", "Hora", "SalaID" },
-                values: new object[] { 1, new DateTime(2024, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "20:00", 1 });
+                columns: new[] { "FunciónID", "Desponibilidad", "Fecha", "Hora", "SalaID" },
+                values: new object[] { 1, "Si", new DateTime(2024, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "20:00", 1 });
 
             migrationBuilder.InsertData(
                 table: "Obras",
@@ -95,7 +126,12 @@ namespace Data.Migrations
             migrationBuilder.InsertData(
                 table: "Salas",
                 columns: new[] { "SalaID", "Capacidad", "Nombre" },
-                values: new object[] { 1, 120, "gfgrqe" });
+                values: new object[] { 1, 120, "Sala 1" });
+
+            migrationBuilder.InsertData(
+                table: "Usuarios",
+                columns: new[] { "UsuarioID", "Contraseña", "IsAdmin", "Nombre", "NombreUsuario" },
+                values: new object[] { 1, "1234", true, "Diego Gimenez Sancho", "17diego15" });
         }
 
         /// <inheritdoc />
@@ -111,7 +147,13 @@ namespace Data.Migrations
                 name: "Obras");
 
             migrationBuilder.DropTable(
+                name: "Reservas");
+
+            migrationBuilder.DropTable(
                 name: "Salas");
+
+            migrationBuilder.DropTable(
+                name: "Usuarios");
         }
     }
 }
