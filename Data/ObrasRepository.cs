@@ -22,7 +22,7 @@ public class ObrasRepository : IObraRepository
 
     public Obras? Get(int id)
     {
-        return _context.Obras.FirstOrDefault(usuario => usuario.ObraID == id);
+        return _context.Obras.AsNoTracking().FirstOrDefault(usuario => usuario.ObraID == id);
     }
 
     public void Add(Obras obras)
@@ -43,11 +43,7 @@ public class ObrasRepository : IObraRepository
 
     public void Put(Obras obras)
     {
-        var existingObra = _context.Obras.FirstOrDefault(ob => ob.ObraID == obras.ObraID);
-        if (existingObra != null)
-        {
-            _context.Entry(existingObra).CurrentValues.SetValues(obras);
-            _context.SaveChanges();
-        }
+        _context.Obras.Update(obras);
+        _context.SaveChanges();
     }
 }

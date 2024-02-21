@@ -20,10 +20,10 @@ namespace Data
             return _context.Usuarios.ToList();
         }
 
-        public Usuario Get(int Id)
+        public Usuario? Get(int Id)
         {
 
-            return _context.Usuarios.FirstOrDefault(usuario => usuario.UsuarioID == Id);
+            return _context.Usuarios.AsNoTracking().FirstOrDefault(usuario => usuario.UsuarioID == Id);
 
         }
 
@@ -45,12 +45,8 @@ namespace Data
 
         public void Put(Usuario usuario)
         {
-            var existingUsuario = _context.Usuarios.FirstOrDefault(ob => ob.UsuarioID == usuario.UsuarioID);
-            if (existingUsuario != null)
-            {
-                _context.Entry(existingUsuario).CurrentValues.SetValues(usuario);
-                _context.SaveChanges();
-            }
+            _context.Usuarios.Update(usuario);
+            _context.SaveChanges();
         }
 
         public List<Usuario> GetUsuarios() => GetAll();
