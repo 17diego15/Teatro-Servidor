@@ -13,5 +13,8 @@ public class Funciones
 
     [Required]
     public string? Hora { get; set; }
+
+    [Required]
+    public string? Desponibilidad { get; set; }
 }
 

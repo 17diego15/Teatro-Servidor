@@ -16,6 +16,8 @@ namespace Data
         public DbSet<Funciones> Funciones { get; set; }
         public DbSet<Obras> Obras { get; set; }
         public DbSet<Sala> Salas { get; set; }
+        public DbSet<Reservas> Reservas { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -30,7 +32,10 @@ namespace Data
                 new Obras { ObraID = 2, Titulo = "Camino al Zoo", Director = "Juan Carlos Rubio", Sinopsis = "A pesar de ser pareja, la vida cotidiana de Peter y Ann está marcada por la incomunicación y la soledad. Rehuyendo el intento de Ann por afrontar la situación, Peter decide pasar el día en el zoológicos de Central Park. Allí conocerá a Jerry, un excéntrico personaje que le obliga a escuchar sus historias hasta la última y más espeluznante de todas: el motivo real de su visita al zoo.", Duración = "105 minutos", Precio = 16, Imagen = "https://cdn.discordapp.com/attachments/1193559955001847920/1209597906542268477/caminoAlZoo.jpg?ex=65e780d6&is=65d50bd6&hm=7c6b5d492436dac2af1eb0913d44ffa8ec1619bf44d440bcfd9626c9660dbea2&" }
                 );
             modelBuilder.Entity<Sala>().HasData(
-                new Sala { SalaID = 1, Nombre = "gfgrqe", Capacidad = 120 }
+                new Sala { SalaID = 1, Nombre = "Sala 1", Capacidad = 120 }
+                );
+            modelBuilder.Entity<Usuario>().HasData(
+                new Usuario { UsuarioID = 1, Nombre = "Diego Gimenez Sancho", NombreUsuario = "17diego15", Contraseña = "1234", IsAdmin = true }
                 );
         }
     }
