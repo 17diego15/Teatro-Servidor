@@ -43,7 +43,11 @@ public class ObrasRepository : IObraRepository
 
     public void Put(Obras obras)
     {
-        _context.Obras.Update(obras);
-        _context.SaveChanges();
+        var existingObra = _context.Obras.FirstOrDefault(ob => ob.ObraID == obras.ObraID);
+        if (existingObra != null)
+        {
+            _context.Entry(existingObra).CurrentValues.SetValues(obras);
+            _context.SaveChanges();
+        }
     }
 }

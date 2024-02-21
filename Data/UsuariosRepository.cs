@@ -45,8 +45,12 @@ namespace Data
 
         public void Put(Usuario usuario)
         {
-            _context.Usuarios.Update(usuario);
-            _context.SaveChanges();
+            var existingUsuario = _context.Usuarios.FirstOrDefault(ob => ob.UsuarioID == usuario.UsuarioID);
+            if (existingUsuario != null)
+            {
+                _context.Entry(existingUsuario).CurrentValues.SetValues(usuario);
+                _context.SaveChanges();
+            }
         }
 
         public List<Usuario> GetUsuarios() => GetAll();
