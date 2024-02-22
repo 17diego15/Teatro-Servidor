@@ -17,12 +17,16 @@ public class ObrasRepository : IObraRepository
 
     public List<Obras> GetAll()
     {
-        return _context.Obras.ToList();
+        return _context.Obras
+                   .Include(o => o.ObraActores)
+                       .ThenInclude(oa => oa.Actor)
+                   .ToList();
+
     }
 
     public Obras? Get(int id)
     {
-        return _context.Obras.AsNoTracking().FirstOrDefault(usuario => usuario.ObraID == id);
+        return _context.Obras.Include(o => o.ObraActores).ThenInclude(oa => oa.Actor).AsNoTracking().FirstOrDefault(o => o.ObraID == id);
     }
 
     public void Add(Obras obras)

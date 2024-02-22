@@ -8,5 +8,7 @@ public class Actores
 
     [Required]
     public string? Nombre { get; set; }
+
+    public List<ObraActor> ObraActores { get; set; } = new List<ObraActor>();
 }
 

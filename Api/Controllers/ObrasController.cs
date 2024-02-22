@@ -17,13 +17,13 @@ namespace Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Obras>> GetAll()
+        public ActionResult<List<ObrasDTO>> GetAll()
         {
             return _obrasService.GetAll();
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Obras> Get(int id)
+        public ActionResult<ObrasDTO> Get(int id)
         {
             var usuario = _obrasService.Get(id);
 
@@ -34,14 +34,14 @@ namespace Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Obras obras)
+        public IActionResult Create(ObrasDTO obras)
         {
             _obrasService.Add(obras);
             return CreatedAtAction(nameof(Get), new { id = obras.ObraID }, obras);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, Obras obras)
+        public IActionResult Put(int id, ObrasDTO obras)
         {
             if (id != obras.ObraID)
                 return BadRequest();

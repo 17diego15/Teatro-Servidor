@@ -5,6 +5,7 @@ public class Funciones
 {
     [Key]
     public int FunciónID { get; set; }
+    public int ObraID { get; set; }
 
     public int? SalaID { get; set; }
 
