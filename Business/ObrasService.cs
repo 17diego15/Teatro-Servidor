@@ -7,10 +7,13 @@ namespace Business;
 public class ObrasService
 {
     private readonly IObraRepository _obrasRepository;
+    private readonly IActorRepository _actorRepository;
 
-    public ObrasService(IObraRepository obrasRepository)
+
+    public ObrasService(IObraRepository obrasRepository, IActorRepository actorRepository)
     {
         _obrasRepository = obrasRepository;
+        _actorRepository = actorRepository;
     }
 
     public List<ObrasDTO> GetAll()
@@ -19,6 +22,7 @@ public class ObrasService
 
         var obrasDto = obras.Select(o => new ObrasDTO
         {
+            ObraID = o.ObraID,
             Titulo = o.Titulo,
             Director = o.Director,
             Sinopsis = o.Sinopsis,
@@ -38,23 +42,39 @@ public class ObrasService
     {
         var obra = _obrasRepository.Get(id);
         if (obra == null) return null;
+        var actoresDto = obra.ObraActores.Select(oa => new ActorDTO
+        {
+            Nombre = oa.Actor.Nombre
+        }).ToList();
 
         return new ObrasDTO
         {
+            ObraID = obra.ObraID,
             Titulo = obra.Titulo,
             Director = obra.Director,
             Sinopsis = obra.Sinopsis,
             Duración = obra.Duración,
             Precio = obra.Precio,
-            Imagen = obra.Imagen
+            Imagen = obra.Imagen,
+            Actores = actoresDto
         };
     }
 
 
     public int Add(ObrasDTO obraDto)
     {
+
+        foreach (var actorDto in obraDto.Actores)
+        {
+            var actorExists = _actorRepository.Get(actorDto.ActorId);
+            if (actorExists == null)
+            {
+                throw new ArgumentException($"El actor con ID {actorDto.ActorId} no existe en la base de datos.");
+            }
+        }
         var obra = new Obras
         {
+            ObraID = obraDto.ObraID,
             Titulo = obraDto.Titulo,
             Director = obraDto.Director,
             Sinopsis = obraDto.Sinopsis,
@@ -62,7 +82,7 @@ public class ObrasService
             Precio = obraDto.Precio,
             Imagen = obraDto.Imagen
         };
-        _obrasRepository.Add(obra); 
+        _obrasRepository.Add(obra);
         return obra.ObraID;
     }
     public void Delete(int id)

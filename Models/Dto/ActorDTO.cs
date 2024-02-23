@@ -3,6 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 public class ActorDTO
 {
-    public string Nombre { get; set; }
+    public int ActorId { get; set; }
+
+    public string? Nombre { get; set; }
 }
 
