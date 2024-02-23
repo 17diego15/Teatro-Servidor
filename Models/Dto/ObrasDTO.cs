@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations;
 
 public class ObrasDTO
 {
-    public int ObraID { get; set; } 
     public string? Titulo { get; set; }
     public string? Director { get; set; }
     public string? Sinopsis { get; set; }

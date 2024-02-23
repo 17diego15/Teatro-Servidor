@@ -45,7 +45,7 @@ public class ObrasRepository : IObraRepository
         }
     }
 
-    public void Put(Obras obras)
+    public void Put(Obras obras, int id)
     {
         _context.Obras.Update(obras);
         _context.SaveChanges();

@@ -19,7 +19,6 @@ public class ObrasService
 
         var obrasDto = obras.Select(o => new ObrasDTO
         {
-            ObraID = o.ObraID,
             Titulo = o.Titulo,
             Director = o.Director,
             Sinopsis = o.Sinopsis,
@@ -52,7 +51,7 @@ public class ObrasService
     }
 
 
-    public void Add(ObrasDTO obraDto)
+    public int Add(ObrasDTO obraDto)
     {
         var obra = new Obras
         {
@@ -63,16 +62,17 @@ public class ObrasService
             Precio = obraDto.Precio,
             Imagen = obraDto.Imagen
         };
-        _obrasRepository.Add(obra);
+        _obrasRepository.Add(obra); 
+        return obra.ObraID;
     }
     public void Delete(int id)
     {
         _obrasRepository.Delete(id);
     }
 
-    public void Put(ObrasDTO obraDto)
+    public void Put(ObrasDTO obraDto, int id)
     {
-        var obra = _obrasRepository.Get(obraDto.ObraID);
+        var obra = _obrasRepository.Get(id);
         if (obra == null) return;
 
         obra.Titulo = obraDto.Titulo;
@@ -82,6 +82,6 @@ public class ObrasService
         obra.Precio = obraDto.Precio;
         obra.Imagen = obraDto.Imagen;
 
-        _obrasRepository.Put(obra);
+        _obrasRepository.Put(obra, id);
     }
 }

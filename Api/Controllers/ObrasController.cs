@@ -25,32 +25,27 @@ namespace Controllers
         [HttpGet("{id}")]
         public ActionResult<ObrasDTO> Get(int id)
         {
-            var usuario = _obrasService.Get(id);
+            var obra = _obrasService.Get(id);
 
-            if (usuario == null)
+            if (obra == null)
                 return NotFound();
 
-            return usuario;
+            return obra;
         }
 
         [HttpPost]
-        public IActionResult Create(ObrasDTO obras)
+        public IActionResult Create(ObrasDTO obrasDto)
         {
-            _obrasService.Add(obras);
-            return CreatedAtAction(nameof(Get), new { id = obras.ObraID }, obras);
+            var obraId = _obrasService.Add(obrasDto);
+            return CreatedAtAction(nameof(Get), new { id = obraId }, obrasDto);
         }
-
         [HttpPut("{id}")]
         public IActionResult Put(int id, ObrasDTO obras)
         {
-            if (id != obras.ObraID)
-                return BadRequest();
-
             var existingObra = _obrasService.Get(id);
-            if (existingObra is null)
-                return NotFound();
+            if (existingObra == null) return NotFound();
 
-            _obrasService.Put(obras);
+            _obrasService.Put(obras, id);
 
             return NoContent();
         }

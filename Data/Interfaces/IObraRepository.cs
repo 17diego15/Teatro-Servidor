@@ -8,7 +8,7 @@ namespace Data
         Obras? Get(int id);
         void Add(Obras obras);
         void Delete(int id);
-        void Put(Obras obras);
+        void Put(Obras obras, int id);
     }
 
 }
