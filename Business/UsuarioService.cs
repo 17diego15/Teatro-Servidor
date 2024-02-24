@@ -37,4 +37,10 @@ public class UsuarioService
     {
         _usuarioRepository.Put(usuario);
     }
+
+    public Usuario ValidateCredentials(string nombreUsuario, string contraseña)
+    {
+        var usuario = _usuarioRepository.GetLogin(nombreUsuario, contraseña);
+        return usuario; 
+    }
 }

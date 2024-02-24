@@ -33,6 +33,21 @@ namespace Controllers
             return usuario;
         }
 
+        [HttpPost("login")]
+        public ActionResult Login(string nombreUsuario, string contraseña)
+        {
+            var usuario = _usuarioService.ValidateCredentials(nombreUsuario, contraseña);
+
+            if (usuario != null)
+            {
+                return Ok(usuario);
+            }
+            else
+            {
+                return Unauthorized("Credenciales incorrectas");
+            }
+        }
+
         [HttpPost]
         public IActionResult Create(Usuario usuario)
         {

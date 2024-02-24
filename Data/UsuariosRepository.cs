@@ -50,5 +50,12 @@ namespace Data
         }
 
         public List<Usuario> GetUsuarios() => GetAll();
+
+        public Usuario GetLogin(string nombreUsuario, string contraseña)
+        {
+            return _context.Usuarios
+                            .AsNoTracking()
+                            .FirstOrDefault(u => u.NombreUsuario == nombreUsuario && u.Contraseña == contraseña);
+        }
     }
 }
