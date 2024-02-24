@@ -21,7 +21,6 @@ public class ObrasRepository : IObraRepository
                    .Include(o => o.ObraActores)
                        .ThenInclude(oa => oa.Actor)
                    .ToList();
-
     }
 
     public Obras? Get(int id)
@@ -33,6 +32,18 @@ public class ObrasRepository : IObraRepository
     {
         _context.Obras.Add(obras);
         _context.SaveChanges();
+        foreach (var obraActor in obras.ObraActores)
+        {
+            if (!_context.ObraActores.Any(oa => oa.ObraID == obraActor.ObraID && oa.ActorId == obraActor.ActorId))
+            {
+                _context.ObraActores.Add(new ObraActor
+                {
+                    ObraID = obraActor.ObraID,
+                    ActorId = obraActor.ActorId
+                });
+            }
+        }
+        _context.SaveChanges(); 
     }
 
     public void Delete(int id)

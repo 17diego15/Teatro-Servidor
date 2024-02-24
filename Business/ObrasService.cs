@@ -31,7 +31,8 @@ public class ObrasService
             Imagen = o.Imagen,
             Actores = o.ObraActores.Select(oa => new ActorDTO
             {
-                Nombre = oa.Actor.Nombre
+                ActorId = oa.ActorId,
+                Nombre = oa.Actor?.Nombre
             }).ToList()
         }).ToList();
 
@@ -42,12 +43,9 @@ public class ObrasService
     {
         var obra = _obrasRepository.Get(id);
         if (obra == null) return null;
-        var actoresDto = obra.ObraActores.Select(oa => new ActorDTO
-        {
-            Nombre = oa.Actor.Nombre
-        }).ToList();
 
-        return new ObrasDTO
+
+        var obrasDto = new ObrasDTO
         {
             ObraID = obra.ObraID,
             Titulo = obra.Titulo,
@@ -56,13 +54,19 @@ public class ObrasService
             Duración = obra.Duración,
             Precio = obra.Precio,
             Imagen = obra.Imagen,
-            Actores = actoresDto
+            Actores = obra.ObraActores.Select(oa => new ActorDTO
+            {
+                ActorId = oa.ActorId,
+                Nombre = oa.Actor?.Nombre 
+            }).ToList()
         };
+        return obrasDto;
     }
 
 
     public int Add(ObrasDTO obraDto)
     {
+        var obraActores = new List<ObraActor>();
 
         foreach (var actorDto in obraDto.Actores)
         {
@@ -71,7 +75,12 @@ public class ObrasService
             {
                 throw new ArgumentException($"El actor con ID {actorDto.ActorId} no existe en la base de datos.");
             }
+            else
+            {
+                obraActores.Add(new ObraActor { ActorId = actorDto.ActorId });
+            }
         }
+
         var obra = new Obras
         {
             ObraID = obraDto.ObraID,
@@ -80,7 +89,8 @@ public class ObrasService
             Sinopsis = obraDto.Sinopsis,
             Duración = obraDto.Duración,
             Precio = obraDto.Precio,
-            Imagen = obraDto.Imagen
+            Imagen = obraDto.Imagen,
+            ObraActores = obraActores
         };
         _obrasRepository.Add(obra);
         return obra.ObraID;
