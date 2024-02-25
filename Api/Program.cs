@@ -1,6 +1,7 @@
 using Data;
 using Business;
 using Microsoft.EntityFrameworkCore;
+using Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,8 @@ builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<ActorService>();
 builder.Services.AddScoped<IActorRepository, ActorRepository>();
 
+builder.Services.AddScoped<FuncionService>();
+builder.Services.AddScoped<IFuncionRepository, FuncionRepository>();
 
 var app = builder.Build();
 

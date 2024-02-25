@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 public class Funcion
 {
     [Key]
-    public int FunciónID { get; set; }
+    public int FuncionID { get; set; }
     public int ObraID { get; set; }
 
     public int? SalaID { get; set; }

@@ -30,7 +30,7 @@ namespace Data.Migrations
                 name: "Funciones",
                 columns: table => new
                 {
-                    FunciónID = table.Column<int>(type: "int", nullable: false)
+                    FuncionID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ObraID = table.Column<int>(type: "int", nullable: false),
                     SalaID = table.Column<int>(type: "int", nullable: true),
@@ -40,7 +40,7 @@ namespace Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Funciones", x => x.FunciónID);
+                    table.PrimaryKey("PK_Funciones", x => x.FuncionID);
                 });
 
             migrationBuilder.CreateTable(
@@ -197,7 +197,7 @@ namespace Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Funciones",
-                columns: new[] { "FunciónID", "Desponibilidad", "Fecha", "Hora", "ObraID", "SalaID" },
+                columns: new[] { "FuncionID", "Desponibilidad", "Fecha", "Hora", "ObraID", "SalaID" },
                 values: new object[,]
                 {
                     { 1, "Si", new DateTime(2023, 12, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "20:00", 1, 3 },
