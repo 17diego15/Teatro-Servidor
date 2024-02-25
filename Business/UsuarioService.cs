@@ -33,9 +33,9 @@ public class UsuarioService
         _usuarioRepository.Delete(id);
     }
 
-    public void Put(Usuario usuario)
+    public void Update(Usuario usuario)
     {
-        _usuarioRepository.Put(usuario);
+        _usuarioRepository.Update(usuario);
     }
 
     public Usuario ValidateCredentials(string nombreUsuario, string contraseña)

@@ -9,23 +9,23 @@ namespace Controllers
     [Route("[controller]")]
     public class ActorController : ControllerBase
     {
-        private readonly ActoresService _actoresService;
+        private readonly ActorService _actorService;
 
-        public ActorController(ActoresService actoresService)
+        public ActorController(ActorService actorService)
         {
-            _actoresService = actoresService;
+            _actorService = actorService;
         }
 
         [HttpGet]
-        public ActionResult<List<Actores>> GetAll()
+        public ActionResult<List<Actor>> GetAll()
         {
-            return _actoresService.GetAll();
+            return _actorService.GetAll();
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Actores> Get(int id)
+        public ActionResult<Actor> Get(int id)
         {
-            var actor = _actoresService.Get(id);
+            var actor = _actorService.Get(id);
 
             if (actor == null)
                 return NotFound();
@@ -34,23 +34,23 @@ namespace Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Actores actor)
+        public IActionResult Create(Actor actor)
         {
-            _actoresService.Add(actor);
+            _actorService.Add(actor);
             return CreatedAtAction(nameof(Get), new { id = actor.ActorId }, actor);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, Actores actor)
+        public IActionResult Put(int id, Actor actor)
         {
             if (id != actor.ActorId)
                 return BadRequest();
 
-            var existingActor = _actoresService.Get(id);
+            var existingActor = _actorService.Get(id);
             if (existingActor is null)
                 return NotFound();
 
-            _actoresService.Put(actor);
+            _actorService.Update(actor);
 
             return NoContent();
         }
@@ -58,12 +58,12 @@ namespace Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var actor = _actoresService.Get(id);
+            var actor = _actorService.Get(id);
 
             if (actor is null)
                 return NotFound();
 
-            _actoresService.Delete(id);
+            _actorService.Delete(id);
 
             return NoContent();
         }

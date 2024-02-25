@@ -1,7 +1,7 @@
 namespace Models;
 using System.ComponentModel.DataAnnotations;
 
-public class Funciones
+public class Funcion
 {
     [Key]
     public int FunciónID { get; set; }

@@ -4,11 +4,11 @@ namespace Data
 {
     public interface IObraRepository
     {
-        List<Obras> GetAll();
-        Obras? Get(int id);
-        void Add(Obras obras);
+        List<Obra> GetAll();
+        Obra? Get(int id);
+        void Add(Obra obra);
         void Delete(int id);
-        void Put(Obras obras, int id);
+        void Update(Obra obra, int id);
     }
 
 }

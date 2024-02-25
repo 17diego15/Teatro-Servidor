@@ -9,23 +9,23 @@ namespace Controllers
     [Route("[controller]")]
     public class ObrasController : ControllerBase
     {
-        private readonly ObrasService _obrasService;
+        private readonly ObraService _obraService;
 
-        public ObrasController(ObrasService obrasService)
+        public ObrasController(ObraService obraService)
         {
-            _obrasService = obrasService;
+            _obraService = obraService;
         }
 
         [HttpGet]
-        public ActionResult<List<ObrasDTO>> GetAll()
+        public ActionResult<List<ObraDto>> GetAll()
         {
-            return _obrasService.GetAll();
+            return _obraService.GetAll();
         }
 
         [HttpGet("{id}")]
-        public ActionResult<ObrasDTO> Get(int id)
+        public ActionResult<ObraDto> Get(int id)
         {
-            var obra = _obrasService.Get(id);
+            var obra = _obraService.Get(id);
 
             if (obra == null)
                 return NotFound();
@@ -34,18 +34,18 @@ namespace Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(ObrasDTO obrasDto)
+        public IActionResult Create(ObraDto obrasDto)
         {
-            var obraId = _obrasService.Add(obrasDto);
+            var obraId = _obraService.Add(obrasDto);
             return CreatedAtAction(nameof(Get), new { id = obraId }, obrasDto);
         }
         [HttpPut("{id}")]
-        public IActionResult Put(int id, ObrasDTO obras)
+        public IActionResult Put(int id, ObraDto obra)
         {
-            var existingObra = _obrasService.Get(id);
+            var existingObra = _obraService.Get(id);
             if (existingObra == null) return NotFound();
 
-            _obrasService.Put(obras, id);
+            _obraService.Update(obra, id);
 
             return NoContent();
         }
@@ -53,12 +53,12 @@ namespace Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var obras = _obrasService.Get(id);
+            var obra = _obraService.Get(id);
 
-            if (obras is null)
+            if (obra is null)
                 return NotFound();
 
-            _obrasService.Delete(id);
+            _obraService.Delete(id);
 
             return NoContent();
         }

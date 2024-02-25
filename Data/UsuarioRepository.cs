@@ -43,7 +43,7 @@ namespace Data
             }
         }
 
-        public void Put(Usuario usuario)
+        public void Update(Usuario usuario)
         {
             _context.Usuarios.Update(usuario);
             _context.SaveChanges();

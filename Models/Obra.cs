@@ -1,7 +1,7 @@
 ﻿namespace Models;
 using System.ComponentModel.DataAnnotations;
 
-public class Obras
+public class Obra
 {
     [Key]
     public int ObraID { get; set; }

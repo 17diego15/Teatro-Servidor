@@ -1,7 +1,7 @@
 namespace Models;
 using System.ComponentModel.DataAnnotations;
 
-public class ActorDTO
+public class ActorDto
 {
     public int ActorId { get; set; }
 

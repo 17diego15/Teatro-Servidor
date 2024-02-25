@@ -1,6 +1,6 @@
 namespace Models;
 using System.ComponentModel.DataAnnotations;
-public class Reservas
+public class Reserva
 {
     [Key]
     public int ReservaID { get; set; }

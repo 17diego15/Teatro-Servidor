@@ -4,28 +4,28 @@ using System.Collections.Generic;
 
 namespace Business;
 
-public class ActoresService
+public class ActorService
 {
     private readonly IActorRepository _actorRepository;
 
-    public ActoresService(IActorRepository actorRepository)
+    public ActorService(IActorRepository actorRepository)
     {
         _actorRepository = actorRepository;
     }
 
-    public List<Actores> GetAll()
+    public List<Actor> GetAll()
     {
         return _actorRepository.GetAll();
     }
 
-    public Actores? Get(int id)
+    public Actor? Get(int id)
     {
         return _actorRepository.Get(id);
     }
 
-    public void Add(Actores actores)
+    public void Add(Actor actor)
     {
-        _actorRepository.Add(actores);
+        _actorRepository.Add(actor);
     }
 
     public void Delete(int id)
@@ -33,8 +33,8 @@ public class ActoresService
         _actorRepository.Delete(id);
     }
 
-    public void Put(Actores actores)
+    public void Update(Actor actor)
     {
-        _actorRepository.Put(actores);
+        _actorRepository.Update(actor);
     }
 }

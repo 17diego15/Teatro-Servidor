@@ -5,31 +5,31 @@ using System.Linq;
 
 namespace Data
 {
-    public class ActoresRepository : IActorRepository
+    public class ActorRepository : IActorRepository
     {
         private readonly TeatroContext _context;
 
-        public ActoresRepository(TeatroContext context)
+        public ActorRepository(TeatroContext context)
         {
             _context = context;
         }
 
-        public List<Actores> GetAll()
+        public List<Actor> GetAll()
         {
 
             return _context.Actores.ToList();
         }
 
-        public Actores? Get(int Id)
+        public Actor? Get(int Id)
         {
 
             return _context.Actores.AsNoTracking().FirstOrDefault(actor => actor.ActorId == Id);
 
         }
 
-        public void Add(Actores actores)
+        public void Add(Actor actor)
         {
-            _context.Actores.Add(actores);
+            _context.Actores.Add(actor);
             _context.SaveChanges();
         }
 
@@ -43,9 +43,9 @@ namespace Data
             }
         }
 
-        public void Put(Actores actores)
+        public void Update(Actor actor)
         {
-            _context.Actores.Update(actores);
+            _context.Actores.Update(actor);
             _context.SaveChanges();
         }
     }

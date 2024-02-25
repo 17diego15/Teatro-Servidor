@@ -4,11 +4,11 @@ namespace Data
 {
     public interface IActorRepository
     {
-        List<Actores> GetAll();
-        Actores? Get(int id);
-        void Add(Actores actores);
+        List<Actor> GetAll();
+        Actor? Get(int id);
+        void Add(Actor actor);
         void Delete(int id);
-        void Put(Actores actores);
+        void Update(Actor actor);
     }
 
 }

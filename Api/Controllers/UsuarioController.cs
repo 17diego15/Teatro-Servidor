@@ -65,7 +65,7 @@ namespace Controllers
             if (existingUsuario is null)
                 return NotFound();
 
-            _usuarioService.Put(usuario);
+            _usuarioService.Update(usuario);
 
             return NoContent();
         }

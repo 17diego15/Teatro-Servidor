@@ -4,23 +4,23 @@ using System.Collections.Generic;
 
 namespace Business;
 
-public class ObrasService
+public class ObraService
 {
-    private readonly IObraRepository _obrasRepository;
+    private readonly IObraRepository _obraRepository;
     private readonly IActorRepository _actorRepository;
 
 
-    public ObrasService(IObraRepository obrasRepository, IActorRepository actorRepository)
+    public ObraService(IObraRepository obraRepository, IActorRepository actorRepository)
     {
-        _obrasRepository = obrasRepository;
+        _obraRepository = obraRepository;
         _actorRepository = actorRepository;
     }
 
-    public List<ObrasDTO> GetAll()
+    public List<ObraDto> GetAll()
     {
-        var obras = _obrasRepository.GetAll();
+        var obra = _obraRepository.GetAll();
 
-        var obrasDto = obras.Select(o => new ObrasDTO
+        var obraDto = obra.Select(o => new ObraDto
         {
             ObraID = o.ObraID,
             Titulo = o.Titulo,
@@ -29,23 +29,23 @@ public class ObrasService
             Duración = o.Duración,
             Precio = o.Precio,
             Imagen = o.Imagen,
-            Actores = o.ObraActores.Select(oa => new ActorDTO
+            Actores = o.ObraActores.Select(oa => new ActorDto
             {
                 ActorId = oa.ActorId,
                 Nombre = oa.Actor?.Nombre
             }).ToList()
         }).ToList();
 
-        return obrasDto;
+        return obraDto;
     }
 
-    public ObrasDTO? Get(int id)
+    public ObraDto? Get(int id)
     {
-        var obra = _obrasRepository.Get(id);
+        var obra = _obraRepository.Get(id);
         if (obra == null) return null;
 
 
-        var obrasDto = new ObrasDTO
+        var obraDto = new ObraDto
         {
             ObraID = obra.ObraID,
             Titulo = obra.Titulo,
@@ -54,17 +54,17 @@ public class ObrasService
             Duración = obra.Duración,
             Precio = obra.Precio,
             Imagen = obra.Imagen,
-            Actores = obra.ObraActores.Select(oa => new ActorDTO
+            Actores = obra.ObraActores.Select(oa => new ActorDto
             {
                 ActorId = oa.ActorId,
                 Nombre = oa.Actor?.Nombre 
             }).ToList()
         };
-        return obrasDto;
+        return obraDto;
     }
 
 
-    public int Add(ObrasDTO obraDto)
+    public int Add(ObraDto obraDto)
     {
         var obraActores = new List<ObraActor>();
 
@@ -81,7 +81,7 @@ public class ObrasService
             }
         }
 
-        var obra = new Obras
+        var obra = new Obra
         {
             ObraID = obraDto.ObraID,
             Titulo = obraDto.Titulo,
@@ -92,17 +92,17 @@ public class ObrasService
             Imagen = obraDto.Imagen,
             ObraActores = obraActores
         };
-        _obrasRepository.Add(obra);
+        _obraRepository.Add(obra);
         return obra.ObraID;
     }
     public void Delete(int id)
     {
-        _obrasRepository.Delete(id);
+        _obraRepository.Delete(id);
     }
 
-    public void Put(ObrasDTO obraDto, int id)
+    public void Update(ObraDto obraDto, int id)
     {
-        var obra = _obrasRepository.Get(id);
+        var obra = _obraRepository.Get(id);
         if (obra == null) return;
 
         obra.Titulo = obraDto.Titulo;
@@ -112,6 +112,6 @@ public class ObrasService
         obra.Precio = obraDto.Precio;
         obra.Imagen = obraDto.Imagen;
 
-        _obrasRepository.Put(obra, id);
+        _obraRepository.Update(obra, id);
     }
 }

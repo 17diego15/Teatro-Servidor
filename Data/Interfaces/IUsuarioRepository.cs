@@ -9,6 +9,6 @@ public interface IUsuarioRepository
     List<Usuario> GetUsuarios();
     void Add(Usuario usuario);
     void Delete(int id);
-    void Put(Usuario usuario);
+    void Update(Usuario usuario);
     Usuario GetLogin(string nombreUsuario, string contraseña);
 }

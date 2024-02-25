@@ -18,14 +18,14 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<TeatroContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddScoped<ObrasService>();
-builder.Services.AddScoped<IObraRepository, ObrasRepository>();
+builder.Services.AddScoped<ObraService>();
+builder.Services.AddScoped<IObraRepository, ObraRepository>();
 
 builder.Services.AddScoped<UsuarioService>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
-builder.Services.AddScoped<ActoresService>();
-builder.Services.AddScoped<IActorRepository, ActoresRepository>();
+builder.Services.AddScoped<ActorService>();
+builder.Services.AddScoped<IActorRepository, ActorRepository>();
 
 
 var app = builder.Build();

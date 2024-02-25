@@ -6,16 +6,16 @@ using Data;
 
 namespace Data;
 
-public class ObrasRepository : IObraRepository
+public class ObraRepository : IObraRepository
 {
     private readonly TeatroContext _context;
 
-    public ObrasRepository(TeatroContext context)
+    public ObraRepository(TeatroContext context)
     {
         _context = context;
     }
 
-    public List<Obras> GetAll()
+    public List<Obra> GetAll()
     {
         return _context.Obras
                    .Include(o => o.ObraActores)
@@ -23,16 +23,16 @@ public class ObrasRepository : IObraRepository
                    .ToList();
     }
 
-    public Obras? Get(int id)
+    public Obra? Get(int id)
     {
         return _context.Obras.Include(o => o.ObraActores).ThenInclude(oa => oa.Actor).AsNoTracking().FirstOrDefault(o => o.ObraID == id);
     }
 
-    public void Add(Obras obras)
+    public void Add(Obra obra)
     {
-        _context.Obras.Add(obras);
+        _context.Obras.Add(obra);
         _context.SaveChanges();
-        foreach (var obraActor in obras.ObraActores)
+        foreach (var obraActor in obra.ObraActores)
         {
             if (!_context.ObraActores.Any(oa => oa.ObraID == obraActor.ObraID && oa.ActorId == obraActor.ActorId))
             {
@@ -56,9 +56,9 @@ public class ObrasRepository : IObraRepository
         }
     }
 
-    public void Put(Obras obras, int id)
+    public void Update(Obra obra, int id)
     {
-        _context.Obras.Update(obras);
+        _context.Obras.Update(obra);
         _context.SaveChanges();
     }
 }
