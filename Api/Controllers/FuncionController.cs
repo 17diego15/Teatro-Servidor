@@ -17,7 +17,7 @@ namespace Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Funcion>> GetAll()
+        public ActionResult<List<FuncionDto>> GetAll()
         {
             return _funcionService.GetAll();
         }

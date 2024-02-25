@@ -25,5 +25,8 @@ public class Obra
     public string? Imagen { get; set; }
 
     public List<ObraActor> ObraActores { get; set; } = new List<ObraActor>();
+
+    public List<Funcion> Funciones { get; set; } = new List<Funcion>();
+
 }
 

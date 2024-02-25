@@ -16,7 +16,10 @@ namespace Data
 
         public List<Funcion> GetAll()
         {
-            return _context.Funciones.ToList();
+            return _context.Funciones
+                       .Include(f => f.Obra)
+                       .Include(f => f.Sala)
+                       .ToList();
         }
 
         public Funcion? Get(int id)
@@ -42,7 +45,7 @@ namespace Data
 
         public void Update(Funcion funcion, int id)
         {
-             _context.Funciones.Update(funcion);
+            _context.Funciones.Update(funcion);
             _context.SaveChanges();
         }
     }

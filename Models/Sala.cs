@@ -11,5 +11,7 @@ public class Sala
 
     [Required]
     public int? Capacidad { get; set; }
+
+    public List<Funcion> Funciones { get; set; } = new List<Funcion>();
 }
 

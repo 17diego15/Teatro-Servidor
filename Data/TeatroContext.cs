@@ -37,6 +37,19 @@ namespace Data
                 .WithMany(a => a.ObraActores)
                 .HasForeignKey(oa => oa.ActorId);
 
+            modelBuilder.Entity<Funcion>()
+                    .HasKey(f => f.FuncionID);
+
+            modelBuilder.Entity<Funcion>()
+                .HasOne(f => f.Obra)
+                .WithMany(o => o.Funciones)
+                .HasForeignKey(f => f.ObraID);
+
+            modelBuilder.Entity<Funcion>()
+                .HasOne(f => f.Sala)
+                .WithMany(s => s.Funciones)
+                .HasForeignKey(f => f.SalaID);
+
             modelBuilder.Entity<Actor>().HasData(
                 new Actor { ActorId = 1, Nombre = "Palmira Cardo" },
                 new Actor { ActorId = 2, Nombre = "Aarón Doménech" },
