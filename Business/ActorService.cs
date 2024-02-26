@@ -13,14 +13,30 @@ public class ActorService
         _actorRepository = actorRepository;
     }
 
-    public List<Actor> GetAll()
+    public List<ActorDto> GetAll()
     {
-        return _actorRepository.GetAll();
+        var actor = _actorRepository.GetAll();
+
+        var actorDto = actor.Select(o => new ActorDto
+        {
+            ActorId = o.ActorId,
+            Nombre = o.Nombre
+        }).ToList();
+        return actorDto;
     }
 
-    public Actor? Get(int id)
+    public ActorDto? Get(int id)
     {
-        return _actorRepository.Get(id);
+        var actor = _actorRepository.Get(id);
+        if (actor == null) return null;
+
+        var actorDto = new ActorDto
+        {
+            ActorId = actor.ActorId,
+            Nombre = actor.Nombre
+        };
+        return actorDto;
+
     }
 
     public void Add(Actor actor)

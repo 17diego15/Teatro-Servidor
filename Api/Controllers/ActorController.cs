@@ -17,13 +17,13 @@ namespace Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Actor>> GetAll()
+        public ActionResult<List<ActorDto>> GetAll()
         {
             return _actorService.GetAll();
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Actor> Get(int id)
+        public ActionResult<ActorDto> Get(int id)
         {
             var actor = _actorService.Get(id);
 
