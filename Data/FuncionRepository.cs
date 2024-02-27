@@ -17,12 +17,11 @@ namespace Data
         public List<Funcion> GetAll()
         {
             return _context.Funciones
-                       .Include(f => f.Obra)
-                                       .ThenInclude(o => o.ObraActores)
-                .ThenInclude(oa => oa.Actor)
-
-                       .Include(f => f.Sala)
-                       .ToList();
+            .Include(f => f.Obra)
+            .ThenInclude(o => o.ObraActores)
+            .ThenInclude(oa => oa.Actor)
+            .Include(f => f.Sala)
+            .ToList();
         }
 
         public Funcion? Get(int id)
@@ -55,6 +54,17 @@ namespace Data
         {
             _context.Funciones.Update(funcion);
             _context.SaveChanges();
+        }
+
+        public List<Funcion> GetObras(int id)
+        {
+            return _context.Funciones
+                .Where(f => f.ObraID == id)
+                .Include(f => f.Obra)
+                .ThenInclude(o => o.ObraActores)
+                .ThenInclude(oa => oa.Actor)
+                .AsNoTracking()
+                .ToList();
         }
     }
 }

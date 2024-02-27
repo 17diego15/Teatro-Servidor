@@ -67,5 +67,20 @@ namespace Controllers
 
             return NoContent();
         }
+
+        [HttpGet("/Funcion/obras/{id}")]
+        public ActionResult GetObras(int id)
+        {
+            var funcion = _funcionService.GetObras(id);
+
+            if (funcion != null)
+            {
+                return Ok(funcion);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
     }
 }

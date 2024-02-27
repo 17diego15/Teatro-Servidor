@@ -9,6 +9,9 @@ namespace Data
         void Add(Funcion funcion);
         void Delete(int id);
         void Update(Funcion funcion, int id);
+
+        List<Funcion> GetObras(int id);
+
     }
 
 }

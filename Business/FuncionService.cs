@@ -50,7 +50,6 @@ public class FuncionService
     {
         var funcion = _funcionRepository.Get(id);
         if (funcion == null) return null;
-        Console.WriteLine(id);
         var funcionDto = new FuncionDto
         {
             FuncionID = funcion.FuncionID,
@@ -73,7 +72,7 @@ public class FuncionService
                 {
                     ActorId = oa.ActorId,
                     Nombre = oa.Actor.Nombre
-                }).ToList()
+                }).ToList() ?? new List<ActorDto>()
             }
         };
 
@@ -93,5 +92,38 @@ public class FuncionService
     public void Update(Funcion funcion, int id)
     {
         _funcionRepository.Update(funcion, id);
+    }
+
+    public List<FuncionDto> GetObras(int id)
+    {
+        var obras = _funcionRepository.GetObras(id);
+        if (obras == null || !obras.Any()) return null;
+
+        var funcionDtos = obras.Select(obra => new FuncionDto
+        {
+            FuncionID = obra.FuncionID,
+            ObraID = obra.ObraID,
+            SalaID = obra.SalaID,
+            Fecha = obra.Fecha,
+            Hora = obra.Hora,
+            Disponibilidad = obra.Disponibilidad,
+            Obra = new ObraDto
+            {
+                ObraID = obra.Obra.ObraID,
+                Titulo = obra.Obra.Titulo,
+                Director = obra.Obra.Director,
+                Sinopsis = obra.Obra.Sinopsis,
+                Duración = obra.Obra.Duración,
+                Precio = obra.Obra.Precio,
+                Imagen = obra.Obra.Imagen,
+                Actores = obra.Obra.ObraActores.Select(oa => new ActorDto
+                {
+                    ActorId = oa.ActorId,
+                    Nombre = oa.Actor.Nombre
+                }).ToList()
+            }
+        }).ToList();
+
+        return funcionDtos;
     }
 }
