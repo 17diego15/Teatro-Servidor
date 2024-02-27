@@ -21,10 +21,10 @@ public class FuncionService
         {
             FuncionID = f.FuncionID,
             ObraID = f.ObraID,
-            SalaID = f.SalaID, 
+            SalaID = f.SalaID,
             Fecha = f.Fecha,
             Hora = f.Hora,
-            Desponibilidad = f.Desponibilidad,
+            Disponibilidad = f.Disponibilidad,
 
             Obra = new ObraDto
             {
@@ -46,9 +46,38 @@ public class FuncionService
         return funcionDtos;
     }
 
-    public Funcion? Get(int id)
+    public FuncionDto? Get(int id)
     {
-        return _funcionRepository.Get(id);
+        var funcion = _funcionRepository.Get(id);
+        if (funcion == null) return null;
+        Console.WriteLine(id);
+        var funcionDto = new FuncionDto
+        {
+            FuncionID = funcion.FuncionID,
+            ObraID = funcion.ObraID,
+            SalaID = funcion.SalaID,
+            Fecha = funcion.Fecha,
+            Hora = funcion.Hora,
+            Disponibilidad = funcion.Disponibilidad,
+
+            Obra = new ObraDto
+            {
+                ObraID = funcion.Obra.ObraID,
+                Titulo = funcion.Obra.Titulo,
+                Director = funcion.Obra.Director,
+                Sinopsis = funcion.Obra.Sinopsis,
+                Duración = funcion.Obra.Duración,
+                Precio = funcion.Obra.Precio,
+                Imagen = funcion.Obra.Imagen,
+                Actores = funcion.Obra.ObraActores.Select(oa => new ActorDto
+                {
+                    ActorId = oa.ActorId,
+                    Nombre = oa.Actor.Nombre
+                }).ToList()
+            }
+        };
+
+        return funcionDto;
     }
 
     public void Add(Funcion funcion)

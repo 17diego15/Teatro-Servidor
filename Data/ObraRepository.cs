@@ -25,7 +25,11 @@ public class ObraRepository : IObraRepository
 
     public Obra? Get(int id)
     {
-        return _context.Obras.Include(o => o.ObraActores).ThenInclude(oa => oa.Actor).AsNoTracking().FirstOrDefault(o => o.ObraID == id);
+        return _context.Obras
+        .Include(o => o.ObraActores)
+        .ThenInclude(oa => oa.Actor)
+        .AsNoTracking()
+        .FirstOrDefault(o => o.ObraID == id);
     }
 
     public void Add(Obra obra)
@@ -43,7 +47,7 @@ public class ObraRepository : IObraRepository
                 });
             }
         }
-        _context.SaveChanges(); 
+        _context.SaveChanges();
     }
 
     public void Delete(int id)

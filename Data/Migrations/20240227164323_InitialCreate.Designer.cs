@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(TeatroContext))]
-    [Migration("20240225174207_InitialCreate")]
+    [Migration("20240227164323_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -347,7 +347,7 @@ namespace Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FuncionID"));
 
-                    b.Property<string>("Desponibilidad")
+                    b.Property<string>("Disponibilidad")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -361,10 +361,14 @@ namespace Data.Migrations
                     b.Property<int>("ObraID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SalaID")
+                    b.Property<int>("SalaID")
                         .HasColumnType("int");
 
                     b.HasKey("FuncionID");
+
+                    b.HasIndex("ObraID");
+
+                    b.HasIndex("SalaID");
 
                     b.ToTable("Funciones");
 
@@ -372,7 +376,7 @@ namespace Data.Migrations
                         new
                         {
                             FuncionID = 1,
-                            Desponibilidad = "Si",
+                            Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Hora = "20:00",
                             ObraID = 1,
@@ -381,7 +385,7 @@ namespace Data.Migrations
                         new
                         {
                             FuncionID = 2,
-                            Desponibilidad = "Si",
+                            Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Hora = "18:00",
                             ObraID = 1,
@@ -390,7 +394,7 @@ namespace Data.Migrations
                         new
                         {
                             FuncionID = 3,
-                            Desponibilidad = "Si",
+                            Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Hora = "16:00",
                             ObraID = 1,
@@ -399,7 +403,7 @@ namespace Data.Migrations
                         new
                         {
                             FuncionID = 4,
-                            Desponibilidad = "Si",
+                            Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Hora = "20:00",
                             ObraID = 1,
@@ -408,7 +412,7 @@ namespace Data.Migrations
                         new
                         {
                             FuncionID = 5,
-                            Desponibilidad = "Si",
+                            Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Hora = "20:00",
                             ObraID = 1,
@@ -417,7 +421,7 @@ namespace Data.Migrations
                         new
                         {
                             FuncionID = 6,
-                            Desponibilidad = "Si",
+                            Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Hora = "18:00",
                             ObraID = 1,
@@ -426,7 +430,7 @@ namespace Data.Migrations
                         new
                         {
                             FuncionID = 7,
-                            Desponibilidad = "Si",
+                            Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Hora = "16:00",
                             ObraID = 1,
@@ -435,7 +439,7 @@ namespace Data.Migrations
                         new
                         {
                             FuncionID = 8,
-                            Desponibilidad = "Si",
+                            Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Hora = "18:00",
                             ObraID = 1,
@@ -444,7 +448,7 @@ namespace Data.Migrations
                         new
                         {
                             FuncionID = 9,
-                            Desponibilidad = "Si",
+                            Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Hora = "20:00",
                             ObraID = 2,
@@ -453,7 +457,7 @@ namespace Data.Migrations
                         new
                         {
                             FuncionID = 10,
-                            Desponibilidad = "Si",
+                            Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Hora = "18:00",
                             ObraID = 2,
@@ -462,7 +466,7 @@ namespace Data.Migrations
                         new
                         {
                             FuncionID = 11,
-                            Desponibilidad = "Si",
+                            Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Hora = "16:00",
                             ObraID = 2,
@@ -471,7 +475,7 @@ namespace Data.Migrations
                         new
                         {
                             FuncionID = 12,
-                            Desponibilidad = "Si",
+                            Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Hora = "20:00",
                             ObraID = 2,
@@ -480,7 +484,7 @@ namespace Data.Migrations
                         new
                         {
                             FuncionID = 13,
-                            Desponibilidad = "Si",
+                            Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Hora = "20:00",
                             ObraID = 2,
@@ -489,7 +493,7 @@ namespace Data.Migrations
                         new
                         {
                             FuncionID = 14,
-                            Desponibilidad = "Si",
+                            Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Hora = "18:00",
                             ObraID = 2,
@@ -498,7 +502,7 @@ namespace Data.Migrations
                         new
                         {
                             FuncionID = 15,
-                            Desponibilidad = "Si",
+                            Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Hora = "20:00",
                             ObraID = 3,
@@ -507,7 +511,7 @@ namespace Data.Migrations
                         new
                         {
                             FuncionID = 16,
-                            Desponibilidad = "Si",
+                            Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Hora = "18:00",
                             ObraID = 3,
@@ -516,7 +520,7 @@ namespace Data.Migrations
                         new
                         {
                             FuncionID = 17,
-                            Desponibilidad = "Si",
+                            Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Hora = "16:00",
                             ObraID = 3,
@@ -525,7 +529,7 @@ namespace Data.Migrations
                         new
                         {
                             FuncionID = 18,
-                            Desponibilidad = "Si",
+                            Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Hora = "20:00",
                             ObraID = 4,
@@ -534,7 +538,7 @@ namespace Data.Migrations
                         new
                         {
                             FuncionID = 19,
-                            Desponibilidad = "Si",
+                            Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Hora = "18:00",
                             ObraID = 4,
@@ -543,7 +547,7 @@ namespace Data.Migrations
                         new
                         {
                             FuncionID = 20,
-                            Desponibilidad = "Si",
+                            Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Hora = "16:00",
                             ObraID = 4,
@@ -552,7 +556,7 @@ namespace Data.Migrations
                         new
                         {
                             FuncionID = 21,
-                            Desponibilidad = "Si",
+                            Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Hora = "20:00",
                             ObraID = 5,
@@ -561,7 +565,7 @@ namespace Data.Migrations
                         new
                         {
                             FuncionID = 22,
-                            Desponibilidad = "Si",
+                            Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Hora = "18:00",
                             ObraID = 5,
@@ -570,7 +574,7 @@ namespace Data.Migrations
                         new
                         {
                             FuncionID = 23,
-                            Desponibilidad = "Si",
+                            Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Hora = "16:00",
                             ObraID = 5,
@@ -579,7 +583,7 @@ namespace Data.Migrations
                         new
                         {
                             FuncionID = 24,
-                            Desponibilidad = "Si",
+                            Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Hora = "20:00",
                             ObraID = 6,
@@ -588,7 +592,7 @@ namespace Data.Migrations
                         new
                         {
                             FuncionID = 25,
-                            Desponibilidad = "Si",
+                            Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Hora = "18:00",
                             ObraID = 6,
@@ -597,7 +601,7 @@ namespace Data.Migrations
                         new
                         {
                             FuncionID = 26,
-                            Desponibilidad = "Si",
+                            Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Hora = "16:00",
                             ObraID = 6,
@@ -606,7 +610,7 @@ namespace Data.Migrations
                         new
                         {
                             FuncionID = 27,
-                            Desponibilidad = "Si",
+                            Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Hora = "10:00",
                             ObraID = 6,
@@ -615,7 +619,7 @@ namespace Data.Migrations
                         new
                         {
                             FuncionID = 28,
-                            Desponibilidad = "Si",
+                            Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Hora = "11:00",
                             ObraID = 6,
@@ -624,7 +628,7 @@ namespace Data.Migrations
                         new
                         {
                             FuncionID = 29,
-                            Desponibilidad = "Si",
+                            Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Hora = "16:00",
                             ObraID = 6,
@@ -633,7 +637,7 @@ namespace Data.Migrations
                         new
                         {
                             FuncionID = 30,
-                            Desponibilidad = "Si",
+                            Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Hora = "20:00",
                             ObraID = 7,
@@ -1179,6 +1183,25 @@ namespace Data.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Models.Funcion", b =>
+                {
+                    b.HasOne("Models.Obra", "Obra")
+                        .WithMany("Funciones")
+                        .HasForeignKey("ObraID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Models.Sala", "Sala")
+                        .WithMany("Funciones")
+                        .HasForeignKey("SalaID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Obra");
+
+                    b.Navigation("Sala");
+                });
+
             modelBuilder.Entity("Models.ObraActor", b =>
                 {
                     b.HasOne("Models.Actor", "Actor")
@@ -1205,7 +1228,14 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Models.Obra", b =>
                 {
+                    b.Navigation("Funciones");
+
                     b.Navigation("ObraActores");
+                });
+
+            modelBuilder.Entity("Models.Sala", b =>
+                {
+                    b.Navigation("Funciones");
                 });
 #pragma warning restore 612, 618
         }

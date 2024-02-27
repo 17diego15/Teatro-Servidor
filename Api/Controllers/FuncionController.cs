@@ -23,7 +23,7 @@ namespace Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Funcion> Get(int id)
+        public ActionResult<FuncionDto> Get(int id)
         {
             var funcion = _funcionService.Get(id);
 

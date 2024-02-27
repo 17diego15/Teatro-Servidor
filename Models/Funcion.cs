@@ -16,7 +16,7 @@ public class Funcion
     public string? Hora { get; set; }
 
     [Required]
-    public string? Desponibilidad { get; set; }
+    public string? Disponibilidad { get; set; }
 
     public virtual Obra? Obra { get; set; }
     public virtual Sala? Sala { get; set; }

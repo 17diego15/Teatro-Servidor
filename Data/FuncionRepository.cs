@@ -18,13 +18,21 @@ namespace Data
         {
             return _context.Funciones
                        .Include(f => f.Obra)
+                                       .ThenInclude(o => o.ObraActores)
+                .ThenInclude(oa => oa.Actor)
+
                        .Include(f => f.Sala)
                        .ToList();
         }
 
         public Funcion? Get(int id)
         {
-            return _context.Funciones.AsNoTracking().FirstOrDefault(funcion => funcion.FuncionID == id);
+            return _context.Funciones
+                .Include(f => f.Obra)
+                .ThenInclude(o => o.ObraActores)
+                .ThenInclude(oa => oa.Actor)
+                .AsNoTracking()
+                .FirstOrDefault(funcion => funcion.FuncionID == id);
         }
 
         public void Add(Funcion funcion)
