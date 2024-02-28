@@ -33,7 +33,7 @@ services:
     environment:
       - DOCKER_CONTAINER=true
 
-# descomentar cuando este completo
+  # descomentar cuando este completo
   # web:
   #   container_name: webContainer
   #   image: p1
