@@ -9,6 +9,7 @@ namespace Data
         void Add(Obra obra);
         void Delete(int id);
         void Update(Obra obra, int id);
+        List<Obra> GetObrasAleatorias(int id);
     }
 
 }

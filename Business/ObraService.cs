@@ -57,7 +57,7 @@ public class ObraService
             Actores = obra.ObraActores.Select(oa => new ActorDto
             {
                 ActorId = oa.ActorId,
-                Nombre = oa.Actor?.Nombre 
+                Nombre = oa.Actor?.Nombre
             }).ToList()
         };
         return obraDto;
@@ -114,4 +114,35 @@ public class ObraService
 
         _obraRepository.Update(obra, id);
     }
+
+    public List<ObraDto> GetObrasAleatorias(int id)
+    {
+        List<ObraDto> obrasAleatorias = new List<ObraDto>();
+
+        for(int i = 0; i < 7; i++ ){
+            
+        }
+
+        var obra = _obraRepository.Get(id);
+        if (obra == null) return null;
+
+        var obraDto = new ObraDto
+        {
+            ObraID = obra.ObraID,
+            Titulo = obra.Titulo,
+            Director = obra.Director,
+            Sinopsis = obra.Sinopsis,
+            Duración = obra.Duración,
+            Precio = obra.Precio,
+            Imagen = obra.Imagen,
+            Actores = obra.ObraActores.Select(oa => new ActorDto
+            {
+                ActorId = oa.ActorId,
+                Nombre = oa.Actor?.Nombre
+            }).ToList()
+        };
+
+        return null;
+    }
+
 }

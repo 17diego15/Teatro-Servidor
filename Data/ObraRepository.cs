@@ -65,4 +65,13 @@ public class ObraRepository : IObraRepository
         _context.Obras.Update(obra);
         _context.SaveChanges();
     }
+
+    public List<Obra> GetObrasAleatorias(int id){
+        return _context.Obras
+        .Include(o => o.ObraActores)
+        .ThenInclude(oa => oa.Actor)
+        .AsNoTracking()
+        .Include(o => o.ObraID == id).ToList();
+        //.FirstOrDefault(o => o.ObraID == id);
+    }
 }
