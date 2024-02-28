@@ -18,9 +18,9 @@ public class ObraRepository : IObraRepository
     public List<Obra> GetAll()
     {
         return _context.Obras
-                   .Include(o => o.ObraActores)
-                       .ThenInclude(oa => oa.Actor)
-                   .ToList();
+        .Include(o => o.ObraActores)
+        .ThenInclude(oa => oa.Actor)
+        .ToList();
     }
 
     public Obra? Get(int id)

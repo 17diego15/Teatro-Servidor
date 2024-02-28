@@ -51,7 +51,8 @@ namespace Data.Migrations
                     ReservaID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FunciónID = table.Column<int>(type: "int", nullable: true),
-                    CantidadAsientos = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    NumeroFila = table.Column<int>(type: "int", nullable: false),
+                    NumeroColumna = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -219,6 +220,19 @@ namespace Data.Migrations
                     { 5, "Mingo Ruano", "75 minutos", "https://media.discordapp.net/attachments/1193559955001847920/1210266589857841152/cuentoDeNavidad.jpg?ex=65e9ef98&is=65d77a98&hm=37161ae32fc01a46296aa1e7bfebc2047d9bc535da97509437960c735e283de6&=&format=webp&width=440&height=609", 12m, "Cuento de Navidad, el clásico de Charles Dickens se presenta en una versión que ambienta la acción en el Londres de los años 30. El Sr. Ebenezer Scrooge un hombre avaro, tacaño y solitario, que nunca celebra la Navidad, recibe la visita del fantasma de su antiguo socio, muerto años atrás. Éste le cuenta que, por haber sido avaro en la vida, toda su maldad se ha convertido en una larga y pesada cadena que deberá arrastrar para siempre. Le anuncia que le espera un destino aún peor, y le avisa de que tendrá una última oportunidad de cambiar cuando reciba la visita de los tres Espíritus de la Navidad. El Sr. Scrooge desafiando la predicción, no se asusta por la noticia y esa noche aparecen los tres Espíritus Navideños: el Pasado, que le hace recordar su vida infantil y juvenil llena de melancolía y añoranza, antes de su adicción al trabajo y su desmedido afán por el dinero; el del Presente que le hace ver la actual situación de la familia de su empleado Bob, que a pesar de su pobreza y de la enfermedad de su hijo Tim, celebra la Navidad. El terrible y sombrío espíritu del Futuro le muestra el destino que le deparará su vida enfrentándose al saqueo de su casa por los pobres, la muerte del pequeño Tim y lo más espantoso: su propia tumba, ante la cual el Sr. Scrooge se horroriza de tal forma que suplica una nueva oportunidad para cambiar. El avaro despierta de su pesadilla y se convierte en un hombre generoso y amable, que celebra la Navidad y ayuda a quienes le rodean.", "Cuento de Navidad" },
                     { 6, "Josema Yuste", "95 minutos", "https://media.discordapp.net/attachments/1193559955001847920/1210266591628103740/queDiosNoNosPille.jpg?ex=65e9ef99&is=65d77a99&hm=8ab3a9eee0fe2cb99e876e1223216b947d4e22b2441c4b20df7792b09ec85d07&=&format=webp", 17m, "El padre Beltrán (Josema Yuste) visita a la marquesa Pilar (Esther del Prado), que posee un valioso cuadro del siglo XVII. El inspector (Santiago Urrialde) ha chequeado las medidas de seguridad y descarta que un ladrón pueda llevárselo. Pero al sacerdote no se le escapa una, y sospecha que el fontanero Floren (Javier Losán) está planeando un robo. Chapucero, sí, pero robo al fin y al cabo... ¡Bienaventurados los espectadores de esta comedia! Pues ellos disfrutarán de un enredo con sospechas, polis, cacos, amor, estafas, tentaciones y hasta un cirio... Aquí todos tienen pecados que ocultar... y siempre será mejor... Que Dios nos pille confesados.", "Que Dios nos pille confesados" },
                     { 7, "Javier Posadas", "120 minutos", "https://media.discordapp.net/attachments/1193559955001847920/1210266591220998305/losCadaveresNoHablan.jpg?ex=65e9ef99&is=65d77a99&hm=66334ef69feb8982b4620390df4ec2388a0a9995b72c96774156c8a17edb35a1&=&format=webp", 16m, "El Marqués de Milford Haven Se ha suicidado en su habitación con las puertas y las ventanas cerradas por dentro. ¿Realmente se suicidó, o fue un asesinato? Juega tu papel, atiende a las escenas y habla con los actores para descubrir el misterio que rodea la muerte del Marqués.", "Los cadáveres no hablan" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Reservas",
+                columns: new[] { "ReservaID", "FunciónID", "NumeroColumna", "NumeroFila" },
+                values: new object[,]
+                {
+                    { 1, 1, 1, 1 },
+                    { 2, 1, 1, 2 },
+                    { 3, 4, 1, 1 },
+                    { 4, 21, 1, 1 },
+                    { 5, 7, 1, 1 },
+                    { 6, 3, 1, 1 }
                 });
 
             migrationBuilder.InsertData(

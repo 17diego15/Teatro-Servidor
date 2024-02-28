@@ -8,6 +8,9 @@ public class Reserva
     public int? FunciónID { get; set; }
 
     [Required]
-    public decimal? CantidadAsientos { get; set; }
+    public int? NumeroFila { get; set; }
+
+    [Required]
+    public int? NumeroColumna { get; set; }
 }
 

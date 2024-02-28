@@ -31,6 +31,9 @@ builder.Services.AddScoped<IActorRepository, ActorRepository>();
 builder.Services.AddScoped<FuncionService>();
 builder.Services.AddScoped<IFuncionRepository, FuncionRepository>();
 
+builder.Services.AddScoped<ReservaService>();
+builder.Services.AddScoped<IReservaRepository, ReservaRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

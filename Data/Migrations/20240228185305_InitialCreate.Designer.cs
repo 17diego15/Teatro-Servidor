@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(TeatroContext))]
-    [Migration("20240227164323_InitialCreate")]
+    [Migration("20240228185305_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -1074,16 +1074,64 @@ namespace Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReservaID"));
 
-                    b.Property<decimal?>("CantidadAsientos")
-                        .IsRequired()
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<int?>("FunciónID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("NumeroColumna")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("NumeroFila")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("ReservaID");
 
                     b.ToTable("Reservas");
+
+                    b.HasData(
+                        new
+                        {
+                            ReservaID = 1,
+                            FunciónID = 1,
+                            NumeroColumna = 1,
+                            NumeroFila = 1
+                        },
+                        new
+                        {
+                            ReservaID = 2,
+                            FunciónID = 1,
+                            NumeroColumna = 1,
+                            NumeroFila = 2
+                        },
+                        new
+                        {
+                            ReservaID = 3,
+                            FunciónID = 4,
+                            NumeroColumna = 1,
+                            NumeroFila = 1
+                        },
+                        new
+                        {
+                            ReservaID = 4,
+                            FunciónID = 21,
+                            NumeroColumna = 1,
+                            NumeroFila = 1
+                        },
+                        new
+                        {
+                            ReservaID = 5,
+                            FunciónID = 7,
+                            NumeroColumna = 1,
+                            NumeroFila = 1
+                        },
+                        new
+                        {
+                            ReservaID = 6,
+                            FunciónID = 3,
+                            NumeroColumna = 1,
+                            NumeroFila = 1
+                        });
                 });
 
             modelBuilder.Entity("Models.Sala", b =>
