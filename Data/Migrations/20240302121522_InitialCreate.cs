@@ -51,6 +51,7 @@ namespace Data.Migrations
                     ReservaID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FunciónID = table.Column<int>(type: "int", nullable: true),
+                    SalaID = table.Column<int>(type: "int", nullable: true),
                     NumeroFila = table.Column<int>(type: "int", nullable: false),
                     NumeroColumna = table.Column<int>(type: "int", nullable: false)
                 },
@@ -66,7 +67,8 @@ namespace Data.Migrations
                     SalaID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Capacidad = table.Column<int>(type: "int", nullable: false)
+                    NumeroColumnas = table.Column<int>(type: "int", nullable: false),
+                    NumeroFilas = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -224,28 +226,24 @@ namespace Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Reservas",
-                columns: new[] { "ReservaID", "FunciónID", "NumeroColumna", "NumeroFila" },
+                columns: new[] { "ReservaID", "FunciónID", "NumeroColumna", "NumeroFila", "SalaID" },
                 values: new object[,]
                 {
-                    { 1, 1, 1, 1 },
-                    { 2, 1, 1, 2 },
-                    { 3, 4, 1, 1 },
-                    { 4, 21, 1, 1 },
-                    { 5, 7, 1, 1 },
-                    { 6, 3, 1, 1 }
+                    { 1, 1, 1, 1, 1 },
+                    { 2, 1, 6, 7, 1 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Salas",
-                columns: new[] { "SalaID", "Capacidad", "Nombre" },
+                columns: new[] { "SalaID", "Nombre", "NumeroColumnas", "NumeroFilas" },
                 values: new object[,]
                 {
-                    { 1, 120, "Sala 1" },
-                    { 2, 120, "Sala 2" },
-                    { 3, 120, "Sala 3" },
-                    { 4, 120, "Sala 4" },
-                    { 5, 120, "Sala 5" },
-                    { 6, 120, "Sala 6" }
+                    { 1, "Sala 1", 9, 10 },
+                    { 2, "Sala 2", 14, 6 },
+                    { 3, "Sala 3", 8, 9 },
+                    { 4, "Sala 4", 12, 8 },
+                    { 5, "Sala 5", 7, 12 },
+                    { 6, "Sala 6", 13, 12 }
                 });
 
             migrationBuilder.InsertData(

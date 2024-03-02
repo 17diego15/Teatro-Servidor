@@ -17,7 +17,7 @@ namespace Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Reserva>> GetAll()
+        public ActionResult<List<ReservaDto>> GetAll()
         {
             return _reservaService.GetAll();
         }
@@ -33,8 +33,8 @@ namespace Controllers
             return reserva;
         }
 
-        [HttpGet("/Reserva/funcion/{id}")]
-        public ActionResult<List<Reserva>> GetFuncion(int id)
+        [HttpGet("/funcion/{id}/reservas")]
+        public ActionResult<List<ReservaDto>> GetFuncion(int id)
         {
             var funcion = _reservaService.GetFuncion(id);
 

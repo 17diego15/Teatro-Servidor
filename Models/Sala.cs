@@ -10,7 +10,10 @@ public class Sala
     public string? Nombre { get; set; }
 
     [Required]
-    public int? Capacidad { get; set; }
+    public int? NumeroColumnas { get; set; }
+
+    [Required]
+    public int? NumeroFilas { get; set; }
 
     public List<Funcion> Funciones { get; set; } = new List<Funcion>();
 }

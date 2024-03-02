@@ -7,10 +7,14 @@ public class Reserva
 
     public int? FunciónID { get; set; }
 
+    public int? SalaID { get; set; }
+
     [Required]
     public int? NumeroFila { get; set; }
 
     [Required]
     public int? NumeroColumna { get; set; }
+
+    public virtual Sala? Sala { get; set; }
 }
 

@@ -13,9 +13,27 @@ public class ReservaService
         _reservaRepository = reservaRepository;
     }
 
-    public List<Reserva> GetAll()
+    public List<ReservaDto> GetAll()
     {
-        return _reservaRepository.GetAll();
+        var reserva = _reservaRepository.GetAll();
+
+        var reservaDto = reserva.Select(r => new ReservaDto
+        {
+            ReservaID = r.ReservaID,
+            FuncionID = r.FunciónID ?? 0,
+            SalaID = r.SalaID ?? 0,
+            NumeroFila = r.NumeroFila ?? 0,
+            NumeroColumna = r.NumeroColumna ?? 0,
+            Sala = r.Sala == null ? null : new SalaDto
+            {
+                SalaID = r.Sala.SalaID,
+                Nombre = r.Sala.Nombre,
+                NumeroFilas = r.Sala.NumeroFilas ?? 0,
+                NumeroColumnas = r.Sala.NumeroColumnas ?? 0
+            }
+        }).ToList();
+
+        return reservaDto;
     }
 
     public Reserva? Get(int id)
@@ -23,9 +41,29 @@ public class ReservaService
         return _reservaRepository.Get(id);
     }
 
-    public List<Reserva> GetFuncion(int id)
+    public List<ReservaDto> GetFuncion(int id)
     {
-        return _reservaRepository.GetFuncion(id);
+        var reservas = _reservaRepository.GetFuncion(id);
+        if (reservas == null) return null;
+
+        var reservaDtos = reservas.Select(r => new ReservaDto
+        {
+            ReservaID = r.ReservaID,
+            FuncionID = r.FunciónID ?? 0, // Asegúrate de usar el nombre de propiedad correcto y manejar los nulos.
+            SalaID = r.SalaID ?? 0,
+            NumeroFila = r.NumeroFila ?? 0,
+            NumeroColumna = r.NumeroColumna ?? 0,
+            Sala = r.Sala == null ? null : new SalaDto
+            {
+                SalaID = r.Sala.SalaID,
+                Nombre = r.Sala.Nombre,
+                NumeroFilas = r.Sala.NumeroFilas ?? 0,
+                NumeroColumnas = r.Sala.NumeroColumnas ?? 0
+            }
+        }).ToList();
+
+        return reservaDtos;
+
     }
 
     public void Add(Reserva reserva)

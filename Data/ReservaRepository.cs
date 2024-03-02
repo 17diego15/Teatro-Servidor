@@ -17,7 +17,9 @@ public class ReservaRepository : IReservaRepository
 
     public List<Reserva> GetAll()
     {
-        return _context.Reservas.ToList();
+        return _context.Reservas
+        .Include(s => s.Sala)
+        .ToList();
     }
     public Reserva? Get(int id)
     {
@@ -30,6 +32,8 @@ public class ReservaRepository : IReservaRepository
     {
         return _context.Reservas
                 .Where(r => r.FunciónID == id)
+                        .Include(s => s.Sala)
+
                 .AsNoTracking()
                 .ToList();
     }

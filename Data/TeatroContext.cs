@@ -154,12 +154,12 @@ namespace Data
                 new Obra { ObraID = 7, Titulo = "Los cadáveres no hablan", Director = "Javier Posadas", Sinopsis = "El Marqués de Milford Haven Se ha suicidado en su habitación con las puertas y las ventanas cerradas por dentro. ¿Realmente se suicidó, o fue un asesinato? Juega tu papel, atiende a las escenas y habla con los actores para descubrir el misterio que rodea la muerte del Marqués.", Duración = "120 minutos", Precio = 16, Imagen = "https://media.discordapp.net/attachments/1193559955001847920/1210266591220998305/losCadaveresNoHablan.jpg?ex=65e9ef99&is=65d77a99&hm=66334ef69feb8982b4620390df4ec2388a0a9995b72c96774156c8a17edb35a1&=&format=webp" }
                 );
             modelBuilder.Entity<Sala>().HasData(
-                new Sala { SalaID = 1, Nombre = "Sala 1", Capacidad = 120 },
-                new Sala { SalaID = 2, Nombre = "Sala 2", Capacidad = 120 },
-                new Sala { SalaID = 3, Nombre = "Sala 3", Capacidad = 120 },
-                new Sala { SalaID = 4, Nombre = "Sala 4", Capacidad = 120 },
-                new Sala { SalaID = 5, Nombre = "Sala 5", Capacidad = 120 },
-                new Sala { SalaID = 6, Nombre = "Sala 6", Capacidad = 120 }
+                new Sala { SalaID = 1, Nombre = "Sala 1", NumeroFilas = 10, NumeroColumnas = 9 },
+                new Sala { SalaID = 2, Nombre = "Sala 2", NumeroFilas = 6, NumeroColumnas = 14 },
+                new Sala { SalaID = 3, Nombre = "Sala 3", NumeroFilas = 9, NumeroColumnas = 8 },
+                new Sala { SalaID = 4, Nombre = "Sala 4", NumeroFilas = 8, NumeroColumnas = 12 },
+                new Sala { SalaID = 5, Nombre = "Sala 5", NumeroFilas = 12, NumeroColumnas = 7 },
+                new Sala { SalaID = 6, Nombre = "Sala 6", NumeroFilas = 12, NumeroColumnas = 13 }
                 );
             modelBuilder.Entity<Usuario>().HasData(
                 new Usuario { UsuarioID = 1, Nombre = "Diego Gimenez Sancho", NombreUsuario = "17diego15", Contraseña = "1234", IsAdmin = true }
@@ -228,12 +228,8 @@ namespace Data
                 );
 
             modelBuilder.Entity<Reserva>().HasData(
-            new Reserva { ReservaID = 1, FunciónID = 1, NumeroFila = 1, NumeroColumna = 1 },
-            new Reserva { ReservaID = 2, FunciónID = 1, NumeroFila = 2, NumeroColumna = 1 },
-            new Reserva { ReservaID = 3, FunciónID = 4, NumeroFila = 1, NumeroColumna = 1 },
-            new Reserva { ReservaID = 4, FunciónID = 21, NumeroFila = 1, NumeroColumna = 1 },
-            new Reserva { ReservaID = 5, FunciónID = 7, NumeroFila = 1, NumeroColumna = 1 },
-            new Reserva { ReservaID = 6, FunciónID = 3, NumeroFila = 1, NumeroColumna = 1 }
+            new Reserva { ReservaID = 1, FunciónID = 1, SalaID = 1, NumeroFila = 1, NumeroColumna = 1 },
+            new Reserva { ReservaID = 2, FunciónID = 1, SalaID = 1, NumeroFila = 7, NumeroColumna = 6 }
             );
         }
     }

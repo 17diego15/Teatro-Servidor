@@ -1082,6 +1082,9 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("int");
 
+                    b.Property<int?>("SalaID")
+                        .HasColumnType("int");
+
                     b.HasKey("ReservaID");
 
                     b.ToTable("Reservas");
@@ -1092,42 +1095,16 @@ namespace Data.Migrations
                             ReservaID = 1,
                             FunciónID = 1,
                             NumeroColumna = 1,
-                            NumeroFila = 1
+                            NumeroFila = 1,
+                            SalaID = 1
                         },
                         new
                         {
                             ReservaID = 2,
                             FunciónID = 1,
-                            NumeroColumna = 1,
-                            NumeroFila = 2
-                        },
-                        new
-                        {
-                            ReservaID = 3,
-                            FunciónID = 4,
-                            NumeroColumna = 1,
-                            NumeroFila = 1
-                        },
-                        new
-                        {
-                            ReservaID = 4,
-                            FunciónID = 21,
-                            NumeroColumna = 1,
-                            NumeroFila = 1
-                        },
-                        new
-                        {
-                            ReservaID = 5,
-                            FunciónID = 7,
-                            NumeroColumna = 1,
-                            NumeroFila = 1
-                        },
-                        new
-                        {
-                            ReservaID = 6,
-                            FunciónID = 3,
-                            NumeroColumna = 1,
-                            NumeroFila = 1
+                            NumeroColumna = 6,
+                            NumeroFila = 7,
+                            SalaID = 1
                         });
                 });
 
@@ -1139,13 +1116,17 @@ namespace Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SalaID"));
 
-                    b.Property<int?>("Capacidad")
-                        .IsRequired()
-                        .HasColumnType("int");
-
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("NumeroColumnas")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("NumeroFilas")
+                        .IsRequired()
+                        .HasColumnType("int");
 
                     b.HasKey("SalaID");
 
@@ -1155,38 +1136,44 @@ namespace Data.Migrations
                         new
                         {
                             SalaID = 1,
-                            Capacidad = 120,
-                            Nombre = "Sala 1"
+                            Nombre = "Sala 1",
+                            NumeroColumnas = 9,
+                            NumeroFilas = 10
                         },
                         new
                         {
                             SalaID = 2,
-                            Capacidad = 120,
-                            Nombre = "Sala 2"
+                            Nombre = "Sala 2",
+                            NumeroColumnas = 14,
+                            NumeroFilas = 6
                         },
                         new
                         {
                             SalaID = 3,
-                            Capacidad = 120,
-                            Nombre = "Sala 3"
+                            Nombre = "Sala 3",
+                            NumeroColumnas = 8,
+                            NumeroFilas = 9
                         },
                         new
                         {
                             SalaID = 4,
-                            Capacidad = 120,
-                            Nombre = "Sala 4"
+                            Nombre = "Sala 4",
+                            NumeroColumnas = 12,
+                            NumeroFilas = 8
                         },
                         new
                         {
                             SalaID = 5,
-                            Capacidad = 120,
-                            Nombre = "Sala 5"
+                            Nombre = "Sala 5",
+                            NumeroColumnas = 7,
+                            NumeroFilas = 12
                         },
                         new
                         {
                             SalaID = 6,
-                            Capacidad = 120,
-                            Nombre = "Sala 6"
+                            Nombre = "Sala 6",
+                            NumeroColumnas = 13,
+                            NumeroFilas = 12
                         });
                 });
 
