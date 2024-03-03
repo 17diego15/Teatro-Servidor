@@ -228,8 +228,8 @@ namespace Data
                 );
 
             modelBuilder.Entity<Reserva>().HasData(
-            new Reserva { ReservaID = 1, FunciónID = 1, SalaID = 1, NumeroFila = 1, NumeroColumna = 1 },
-            new Reserva { ReservaID = 2, FunciónID = 1, SalaID = 1, NumeroFila = 7, NumeroColumna = 6 }
+            new Reserva { ReservaID = 1, FunciónID = 1, NumeroFila = 1, NumeroColumna = 1 },
+            new Reserva { ReservaID = 2, FunciónID = 1, NumeroFila = 7, NumeroColumna = 6 }
             );
         }
     }

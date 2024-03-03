@@ -7,8 +7,6 @@ public class Reserva
 
     public int? FunciónID { get; set; }
 
-    public int? SalaID { get; set; }
-
     [Required]
     public int? NumeroFila { get; set; }
 

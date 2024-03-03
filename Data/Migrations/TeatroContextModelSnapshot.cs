@@ -1087,6 +1087,8 @@ namespace Data.Migrations
 
                     b.HasKey("ReservaID");
 
+                    b.HasIndex("SalaID");
+
                     b.ToTable("Reservas");
 
                     b.HasData(
@@ -1095,16 +1097,14 @@ namespace Data.Migrations
                             ReservaID = 1,
                             FunciónID = 1,
                             NumeroColumna = 1,
-                            NumeroFila = 1,
-                            SalaID = 1
+                            NumeroFila = 1
                         },
                         new
                         {
                             ReservaID = 2,
                             FunciónID = 1,
                             NumeroColumna = 6,
-                            NumeroFila = 7,
-                            SalaID = 1
+                            NumeroFila = 7
                         });
                 });
 
@@ -1251,6 +1251,15 @@ namespace Data.Migrations
                     b.Navigation("Actor");
 
                     b.Navigation("Obra");
+                });
+
+            modelBuilder.Entity("Models.Reserva", b =>
+                {
+                    b.HasOne("Models.Sala", "Sala")
+                        .WithMany()
+                        .HasForeignKey("SalaID");
+
+                    b.Navigation("Sala");
                 });
 
             modelBuilder.Entity("Models.Actor", b =>

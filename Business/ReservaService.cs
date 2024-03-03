@@ -21,7 +21,6 @@ public class ReservaService
         {
             ReservaID = r.ReservaID,
             FuncionID = r.FunciónID ?? 0,
-            SalaID = r.SalaID ?? 0,
             NumeroFila = r.NumeroFila ?? 0,
             NumeroColumna = r.NumeroColumna ?? 0,
             Sala = r.Sala == null ? null : new SalaDto
@@ -50,7 +49,6 @@ public class ReservaService
         {
             ReservaID = r.ReservaID,
             FuncionID = r.FunciónID ?? 0, 
-            SalaID = r.SalaID ?? 0,
             NumeroFila = r.NumeroFila ?? 0,
             NumeroColumna = r.NumeroColumna ?? 0,
             Sala = r.Sala == null ? null : new SalaDto

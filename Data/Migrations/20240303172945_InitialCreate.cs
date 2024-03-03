@@ -45,22 +45,6 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Reservas",
-                columns: table => new
-                {
-                    ReservaID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FunciónID = table.Column<int>(type: "int", nullable: true),
-                    SalaID = table.Column<int>(type: "int", nullable: true),
-                    NumeroFila = table.Column<int>(type: "int", nullable: false),
-                    NumeroColumna = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Reservas", x => x.ReservaID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Salas",
                 columns: table => new
                 {
@@ -142,6 +126,27 @@ namespace Data.Migrations
                         principalTable: "Salas",
                         principalColumn: "SalaID",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Reservas",
+                columns: table => new
+                {
+                    ReservaID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FunciónID = table.Column<int>(type: "int", nullable: true),
+                    NumeroFila = table.Column<int>(type: "int", nullable: false),
+                    NumeroColumna = table.Column<int>(type: "int", nullable: false),
+                    SalaID = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reservas", x => x.ReservaID);
+                    table.ForeignKey(
+                        name: "FK_Reservas_Salas_SalaID",
+                        column: x => x.SalaID,
+                        principalTable: "Salas",
+                        principalColumn: "SalaID");
                 });
 
             migrationBuilder.InsertData(
@@ -229,8 +234,8 @@ namespace Data.Migrations
                 columns: new[] { "ReservaID", "FunciónID", "NumeroColumna", "NumeroFila", "SalaID" },
                 values: new object[,]
                 {
-                    { 1, 1, 1, 1, 1 },
-                    { 2, 1, 6, 7, 1 }
+                    { 1, 1, 1, 1, null },
+                    { 2, 1, 6, 7, null }
                 });
 
             migrationBuilder.InsertData(
@@ -368,6 +373,11 @@ namespace Data.Migrations
                 name: "IX_ObraActores_ActorId",
                 table: "ObraActores",
                 column: "ActorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Reservas_SalaID",
+                table: "Reservas",
+                column: "SalaID");
         }
 
         /// <inheritdoc />
@@ -386,13 +396,13 @@ namespace Data.Migrations
                 name: "Usuarios");
 
             migrationBuilder.DropTable(
-                name: "Salas");
-
-            migrationBuilder.DropTable(
                 name: "Actores");
 
             migrationBuilder.DropTable(
                 name: "Obras");
+
+            migrationBuilder.DropTable(
+                name: "Salas");
         }
     }
 }
