@@ -59,7 +59,13 @@ namespace Data
 
         public List<Funcion> GetObras(int id)
         {
+            DateTime now = DateTime.Now;
             return _context.Funciones
+            //descomentar cuando se actualicen las fechas
+                // .Where(f => f.ObraID == id &&
+                //     (f.Fecha.Date > now.Date ||
+                //     (f.Fecha.Date == now.Date &&
+                //     f.Hora > now.TimeOfDay)))
                 .Where(f => f.ObraID == id)
                 .Include(f => f.Obra)
                 .ThenInclude(o => o.ObraActores)

@@ -351,9 +351,9 @@ namespace Data.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Hora")
+                    b.Property<TimeSpan?>("Hora")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("time");
 
                     b.Property<int>("ObraID")
                         .HasColumnType("int");
@@ -375,7 +375,7 @@ namespace Data.Migrations
                             FuncionID = 1,
                             Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = "20:00",
+                            Hora = new TimeSpan(0, 20, 0, 0, 0),
                             ObraID = 1,
                             SalaID = 3
                         },
@@ -384,7 +384,7 @@ namespace Data.Migrations
                             FuncionID = 2,
                             Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = "18:00",
+                            Hora = new TimeSpan(0, 18, 0, 0, 0),
                             ObraID = 1,
                             SalaID = 4
                         },
@@ -393,7 +393,7 @@ namespace Data.Migrations
                             FuncionID = 3,
                             Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = "16:00",
+                            Hora = new TimeSpan(0, 16, 0, 0, 0),
                             ObraID = 1,
                             SalaID = 6
                         },
@@ -402,7 +402,7 @@ namespace Data.Migrations
                             FuncionID = 4,
                             Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = "20:00",
+                            Hora = new TimeSpan(0, 20, 0, 0, 0),
                             ObraID = 1,
                             SalaID = 2
                         },
@@ -411,7 +411,7 @@ namespace Data.Migrations
                             FuncionID = 5,
                             Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = "20:00",
+                            Hora = new TimeSpan(0, 20, 0, 0, 0),
                             ObraID = 1,
                             SalaID = 6
                         },
@@ -420,7 +420,7 @@ namespace Data.Migrations
                             FuncionID = 6,
                             Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = "18:00",
+                            Hora = new TimeSpan(0, 18, 0, 0, 0),
                             ObraID = 1,
                             SalaID = 5
                         },
@@ -429,7 +429,7 @@ namespace Data.Migrations
                             FuncionID = 7,
                             Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = "16:00",
+                            Hora = new TimeSpan(0, 16, 0, 0, 0),
                             ObraID = 1,
                             SalaID = 2
                         },
@@ -438,7 +438,7 @@ namespace Data.Migrations
                             FuncionID = 8,
                             Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = "18:00",
+                            Hora = new TimeSpan(0, 18, 0, 0, 0),
                             ObraID = 1,
                             SalaID = 5
                         },
@@ -447,7 +447,7 @@ namespace Data.Migrations
                             FuncionID = 9,
                             Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = "20:00",
+                            Hora = new TimeSpan(0, 20, 0, 0, 0),
                             ObraID = 2,
                             SalaID = 6
                         },
@@ -456,7 +456,7 @@ namespace Data.Migrations
                             FuncionID = 10,
                             Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = "18:00",
+                            Hora = new TimeSpan(0, 18, 0, 0, 0),
                             ObraID = 2,
                             SalaID = 2
                         },
@@ -465,7 +465,7 @@ namespace Data.Migrations
                             FuncionID = 11,
                             Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = "16:00",
+                            Hora = new TimeSpan(0, 16, 0, 0, 0),
                             ObraID = 2,
                             SalaID = 3
                         },
@@ -474,7 +474,7 @@ namespace Data.Migrations
                             FuncionID = 12,
                             Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = "20:00",
+                            Hora = new TimeSpan(0, 20, 0, 0, 0),
                             ObraID = 2,
                             SalaID = 1
                         },
@@ -483,7 +483,7 @@ namespace Data.Migrations
                             FuncionID = 13,
                             Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = "20:00",
+                            Hora = new TimeSpan(0, 20, 0, 0, 0),
                             ObraID = 2,
                             SalaID = 2
                         },
@@ -492,7 +492,7 @@ namespace Data.Migrations
                             FuncionID = 14,
                             Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = "18:00",
+                            Hora = new TimeSpan(0, 18, 0, 0, 0),
                             ObraID = 2,
                             SalaID = 1
                         },
@@ -501,7 +501,7 @@ namespace Data.Migrations
                             FuncionID = 15,
                             Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = "20:00",
+                            Hora = new TimeSpan(0, 20, 0, 0, 0),
                             ObraID = 3,
                             SalaID = 1
                         },
@@ -510,7 +510,7 @@ namespace Data.Migrations
                             FuncionID = 16,
                             Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = "18:00",
+                            Hora = new TimeSpan(0, 18, 0, 0, 0),
                             ObraID = 3,
                             SalaID = 3
                         },
@@ -519,7 +519,7 @@ namespace Data.Migrations
                             FuncionID = 17,
                             Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = "16:00",
+                            Hora = new TimeSpan(0, 16, 0, 0, 0),
                             ObraID = 3,
                             SalaID = 2
                         },
@@ -528,7 +528,7 @@ namespace Data.Migrations
                             FuncionID = 18,
                             Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = "20:00",
+                            Hora = new TimeSpan(0, 20, 0, 0, 0),
                             ObraID = 4,
                             SalaID = 4
                         },
@@ -537,7 +537,7 @@ namespace Data.Migrations
                             FuncionID = 19,
                             Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = "18:00",
+                            Hora = new TimeSpan(0, 18, 0, 0, 0),
                             ObraID = 4,
                             SalaID = 6
                         },
@@ -546,7 +546,7 @@ namespace Data.Migrations
                             FuncionID = 20,
                             Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = "16:00",
+                            Hora = new TimeSpan(0, 16, 0, 0, 0),
                             ObraID = 4,
                             SalaID = 5
                         },
@@ -555,7 +555,7 @@ namespace Data.Migrations
                             FuncionID = 21,
                             Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = "20:00",
+                            Hora = new TimeSpan(0, 20, 0, 0, 0),
                             ObraID = 5,
                             SalaID = 2
                         },
@@ -564,7 +564,7 @@ namespace Data.Migrations
                             FuncionID = 22,
                             Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = "18:00",
+                            Hora = new TimeSpan(0, 18, 0, 0, 0),
                             ObraID = 5,
                             SalaID = 1
                         },
@@ -573,7 +573,7 @@ namespace Data.Migrations
                             FuncionID = 23,
                             Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = "16:00",
+                            Hora = new TimeSpan(0, 16, 0, 0, 0),
                             ObraID = 5,
                             SalaID = 5
                         },
@@ -582,7 +582,7 @@ namespace Data.Migrations
                             FuncionID = 24,
                             Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = "20:00",
+                            Hora = new TimeSpan(0, 20, 0, 0, 0),
                             ObraID = 6,
                             SalaID = 2
                         },
@@ -591,7 +591,7 @@ namespace Data.Migrations
                             FuncionID = 25,
                             Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = "18:00",
+                            Hora = new TimeSpan(0, 18, 0, 0, 0),
                             ObraID = 6,
                             SalaID = 4
                         },
@@ -600,7 +600,7 @@ namespace Data.Migrations
                             FuncionID = 26,
                             Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = "16:00",
+                            Hora = new TimeSpan(0, 16, 0, 0, 0),
                             ObraID = 6,
                             SalaID = 3
                         },
@@ -609,7 +609,7 @@ namespace Data.Migrations
                             FuncionID = 27,
                             Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = "10:00",
+                            Hora = new TimeSpan(0, 10, 0, 0, 0),
                             ObraID = 6,
                             SalaID = 6
                         },
@@ -618,7 +618,7 @@ namespace Data.Migrations
                             FuncionID = 28,
                             Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = "11:00",
+                            Hora = new TimeSpan(0, 10, 0, 0, 0),
                             ObraID = 6,
                             SalaID = 4
                         },
@@ -627,7 +627,7 @@ namespace Data.Migrations
                             FuncionID = 29,
                             Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = "16:00",
+                            Hora = new TimeSpan(0, 16, 0, 0, 0),
                             ObraID = 6,
                             SalaID = 2
                         },
@@ -636,7 +636,7 @@ namespace Data.Migrations
                             FuncionID = 30,
                             Disponibilidad = "Si",
                             Fecha = new DateTime(2023, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = "20:00",
+                            Hora = new TimeSpan(0, 20, 0, 0, 0),
                             ObraID = 7,
                             SalaID = 5
                         });

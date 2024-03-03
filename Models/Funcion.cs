@@ -13,7 +13,7 @@ public class Funcion
     public DateTime Fecha { get; set; }
 
     [Required]
-    public string? Hora { get; set; }
+    public TimeSpan? Hora { get; set; }
 
     [Required]
     public string? Disponibilidad { get; set; }
