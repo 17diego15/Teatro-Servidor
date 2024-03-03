@@ -10,6 +10,7 @@ public class FuncionDto
     public string? Hora { get; set; }
     public string? Disponibilidad { get; set; }
     public List<ActorDto> Actores { get; set; } = new List<ActorDto>();
-    public ObraDto Obra { get; set; }
+    public ObraDto? Obra { get; set; }
+    public SalaDto? Sala { get; set; }
 }
 

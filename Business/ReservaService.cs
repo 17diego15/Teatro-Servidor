@@ -49,7 +49,7 @@ public class ReservaService
         var reservaDtos = reservas.Select(r => new ReservaDto
         {
             ReservaID = r.ReservaID,
-            FuncionID = r.FunciónID ?? 0, // Asegúrate de usar el nombre de propiedad correcto y manejar los nulos.
+            FuncionID = r.FunciónID ?? 0, 
             SalaID = r.SalaID ?? 0,
             NumeroFila = r.NumeroFila ?? 0,
             NumeroColumna = r.NumeroColumna ?? 0,

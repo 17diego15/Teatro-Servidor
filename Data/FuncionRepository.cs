@@ -30,6 +30,7 @@ namespace Data
                 .Include(f => f.Obra)
                 .ThenInclude(o => o.ObraActores)
                 .ThenInclude(oa => oa.Actor)
+                .Include(f => f.Sala)
                 .AsNoTracking()
                 .FirstOrDefault(funcion => funcion.FuncionID == id);
         }

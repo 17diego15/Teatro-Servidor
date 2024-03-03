@@ -73,6 +73,14 @@ public class FuncionService
                     ActorId = oa.ActorId,
                     Nombre = oa.Actor.Nombre
                 }).ToList() ?? new List<ActorDto>()
+            },
+
+            Sala = new SalaDto
+            {
+                SalaID = funcion.Sala.SalaID,
+                Nombre = funcion.Sala.Nombre,
+                NumeroFilas = funcion.Sala.NumeroFilas ?? 0,
+                NumeroColumnas = funcion.Sala.NumeroColumnas ?? 0,
             }
         };
 
