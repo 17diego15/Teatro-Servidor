@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(TeatroContext))]
-    [Migration("20240303180823_InitialCreate")]
+    [Migration("20240305142623_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

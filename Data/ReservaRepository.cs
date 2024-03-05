@@ -24,23 +24,22 @@ public class ReservaRepository : IReservaRepository
     public Reserva? Get(int id)
     {
         return _context.Reservas
-                .AsNoTracking()
-                .FirstOrDefault(r => r.ReservaID == id);
+        .AsNoTracking()
+        .FirstOrDefault(r => r.ReservaID == id);
     }
 
     public List<Reserva>? GetFuncion(int id)
     {
         return _context.Reservas
-                .Where(r => r.FunciónID == id)
-                        .Include(s => s.Sala)
-
-                .AsNoTracking()
-                .ToList();
+        .Where(r => r.FunciónID == id)
+        .Include(s => s.Sala)
+        .AsNoTracking()
+        .ToList();
     }
 
-    public void Add(Reserva reserva)
+    public void Add(List<Reserva> reservas)
     {
-        _context.Reservas.Add(reserva);
+        _context.Reservas.AddRange(reservas);
         _context.SaveChanges();
     }
 

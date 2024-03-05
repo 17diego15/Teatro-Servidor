@@ -45,10 +45,11 @@ namespace Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Reserva reserva)
+        public IActionResult Create(List<ReservaDto> reservasDto)
         {
-            _reservaService.Add(reserva);
-            return CreatedAtAction(nameof(Get), new { id = reserva.ReservaID }, reserva);
+            // Pasa toda la lista de ReservaDto al método Add del servicio.
+            var reservasIds = _reservaService.Add(reservasDto);
+            return Created("", reservasIds);
         }
 
         [HttpPut("{id}")]
