@@ -62,11 +62,40 @@ public class ObraRepository : IObraRepository
 
     public void Update(Obra obra, int id)
     {
-        _context.Obras.Update(obra);
-        _context.SaveChanges();
+        var obraExistente = _context.Obras.Include(o => o.ObraActores).FirstOrDefault(o => o.ObraID == id);
+        if (obraExistente != null)
+        {
+            _context.Entry(obraExistente).CurrentValues.SetValues(obra);
+
+            foreach (var existingObraActor in obraExistente.ObraActores.ToList())
+            {
+                if (!obra.ObraActores.Any(oa => oa.ActorId == existingObraActor.ActorId))
+                {
+                    _context.ObraActores.Remove(existingObraActor);
+                }
+            }
+
+            foreach (var obraActor in obra.ObraActores)
+            {
+                var existingActor = obraExistente.ObraActores
+                .Where(oa => oa.ActorId == obraActor.ActorId && oa.ObraID == obraActor.ObraID)
+                .FirstOrDefault();
+
+                if (existingActor == null)
+                {
+                    obraExistente.ObraActores.Add(new ObraActor
+                    {
+                        ObraID = id,
+                        ActorId = obraActor.ActorId
+                    });
+                }
+            }
+            _context.SaveChanges();
+        }
     }
 
-    public List<Obra> GetObrasAleatorias(int id){
+    public List<Obra> GetObrasAleatorias(int id)
+    {
         return _context.Obras
         .Include(o => o.ObraActores)
         .ThenInclude(oa => oa.Actor)

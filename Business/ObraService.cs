@@ -111,7 +111,17 @@ public class ObraService
         obra.Duración = obraDto.Duración;
         obra.Precio = obraDto.Precio;
         obra.Imagen = obraDto.Imagen;
+        var actoresActualizados = new List<ObraActor>();
+        foreach (var actorDto in obraDto.Actores)
+        {
+            var actor = _actorRepository.Get(actorDto.ActorId);
+            if (actor != null)
+            {
+                actoresActualizados.Add(new ObraActor { ObraID = id, ActorId = actor.ActorId });
+            }
+        }
 
+        obra.ObraActores = actoresActualizados;
         _obraRepository.Update(obra, id);
     }
 
@@ -119,8 +129,9 @@ public class ObraService
     {
         List<ObraDto> obrasAleatorias = new List<ObraDto>();
 
-        for(int i = 0; i < 7; i++ ){
-            
+        for (int i = 0; i < 7; i++)
+        {
+
         }
 
         var obra = _obraRepository.Get(id);

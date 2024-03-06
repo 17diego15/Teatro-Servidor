@@ -68,7 +68,7 @@ namespace Controllers
             return NoContent();
         }
 
-        [HttpGet("/Funcion/obras/{id}")]
+        [HttpGet("/obras/{id}/funcion")]
         public ActionResult GetObras(int id)
         {
             var funcion = _funcionService.GetObras(id);
