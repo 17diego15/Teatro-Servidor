@@ -34,23 +34,24 @@ namespace Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Funcion funcion)
+        public IActionResult Create(FuncionPostDto funcionPostDto)
         {
-            _funcionService.Add(funcion);
-            return CreatedAtAction(nameof(Get), new { id = funcion.FuncionID }, funcion);
+            var funcionId = _funcionService.Add(funcionPostDto);
+
+            return CreatedAtAction(nameof(Get), new { id = funcionId }, funcionPostDto);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, Funcion funcion)
+        public IActionResult Put(int id, FuncionPostDto funcionPostDto)
         {
-            if (id != funcion.FuncionID)
+            if (id != funcionPostDto.FuncionID)
                 return BadRequest();
 
             var existingFuncion = _funcionService.Get(id);
             if (existingFuncion is null)
                 return NotFound();
 
-            _funcionService.Update(funcion, id);
+            _funcionService.Update(funcionPostDto, id);
 
             return NoContent();
         }

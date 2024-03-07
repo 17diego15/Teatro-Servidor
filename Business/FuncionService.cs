@@ -87,9 +87,19 @@ public class FuncionService
         return funcionDto;
     }
 
-    public void Add(Funcion funcion)
+    public int Add(FuncionPostDto funcionPostDto)
     {
+        var funcion = new Funcion
+        {
+            FuncionID = funcionPostDto.FuncionID,
+            ObraID = funcionPostDto.ObraID,
+            SalaID = funcionPostDto.SalaID,
+            Fecha = funcionPostDto.Fecha ?? throw new InvalidOperationException("La fecha es requerida"),
+            Hora = funcionPostDto.Hora,
+            Disponibilidad = funcionPostDto.Disponibilidad,
+        };
         _funcionRepository.Add(funcion);
+        return funcion.FuncionID;
     }
 
     public void Delete(int id)
@@ -97,8 +107,17 @@ public class FuncionService
         _funcionRepository.Delete(id);
     }
 
-    public void Update(Funcion funcion, int id)
+    public void Update(FuncionPostDto funcionPostDto, int id)
     {
+        var funcion = _funcionRepository.Get(id);
+        if (funcion == null) return;
+
+        funcion.FuncionID = funcionPostDto.FuncionID;
+        funcion.ObraID = funcionPostDto.ObraID;
+        funcion.SalaID = funcionPostDto.SalaID;
+        funcion.Fecha = funcionPostDto.Fecha ?? throw new InvalidOperationException("La fecha es requerida");
+        funcion.Hora = funcionPostDto.Hora;
+        funcion.Disponibilidad = funcionPostDto.Disponibilidad;
         _funcionRepository.Update(funcion, id);
     }
 
