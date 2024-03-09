@@ -1,3 +1,5 @@
+using Serilog;
+using Serilog.Events;
 using Data;
 using Business;
 using Microsoft.EntityFrameworkCore;
@@ -6,6 +8,15 @@ using Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Debug()
+    .WriteTo.Console()
+    .WriteTo.File("logs/application.log", rollingInterval: RollingInterval.Day)
+    .WriteTo.Debug()
+    .CreateLogger();
+builder.Host.UseSerilog();
+
 
 var isRunningInDocker = Environment.GetEnvironmentVariable("DOCKER_CONTAINER") == "true";
 var keyString = isRunningInDocker ? "ServerDB_Docker" : "ServerDB_Local";
