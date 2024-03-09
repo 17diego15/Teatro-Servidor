@@ -226,11 +226,6 @@ namespace Data
                 new ObraActor { ActorId = 58, ObraID = 7 },
                 new ObraActor { ActorId = 59, ObraID = 7 }
                 );
-
-            modelBuilder.Entity<Reserva>().HasData(
-            new Reserva { ReservaID = 1, FunciónID = 1, NumeroFila = 1, NumeroColumna = 1 },
-            new Reserva { ReservaID = 2, FunciónID = 1, NumeroFila = 7, NumeroColumna = 6 }
-            );
         }
     }
 }

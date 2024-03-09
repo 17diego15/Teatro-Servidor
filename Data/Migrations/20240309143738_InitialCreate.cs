@@ -230,15 +230,6 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Reservas",
-                columns: new[] { "ReservaID", "FunciónID", "NumeroColumna", "NumeroFila", "SalaID" },
-                values: new object[,]
-                {
-                    { 1, 1, 1, 1, null },
-                    { 2, 1, 6, 7, null }
-                });
-
-            migrationBuilder.InsertData(
                 table: "Salas",
                 columns: new[] { "SalaID", "Nombre", "NumeroColumnas", "NumeroFilas" },
                 values: new object[,]

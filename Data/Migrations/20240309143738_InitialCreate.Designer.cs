@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(TeatroContext))]
-    [Migration("20240307190742_InitialCreate")]
+    [Migration("20240309143738_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -1093,22 +1093,6 @@ namespace Data.Migrations
                     b.HasIndex("SalaID");
 
                     b.ToTable("Reservas");
-
-                    b.HasData(
-                        new
-                        {
-                            ReservaID = 1,
-                            FunciónID = 1,
-                            NumeroColumna = 1,
-                            NumeroFila = 1
-                        },
-                        new
-                        {
-                            ReservaID = 2,
-                            FunciónID = 1,
-                            NumeroColumna = 6,
-                            NumeroFila = 7
-                        });
                 });
 
             modelBuilder.Entity("Models.Sala", b =>

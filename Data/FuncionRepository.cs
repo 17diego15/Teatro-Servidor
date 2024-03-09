@@ -61,7 +61,7 @@ namespace Data
         {
             DateTime now = DateTime.Now;
             return _context.Funciones
-            //descomentar cuando se actualicen las fechas
+                //descomentar cuando se actualicen las fechas
                 // .Where(f => f.ObraID == id &&
                 //     (f.Fecha.Date > now.Date ||
                 //     (f.Fecha.Date == now.Date &&
