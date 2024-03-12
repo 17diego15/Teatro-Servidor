@@ -38,6 +38,7 @@ namespace Data
         public void Add(Funcion funcion)
         {
             _context.Funciones.Add(funcion);
+            
             _context.SaveChanges();
         }
 
@@ -54,6 +55,7 @@ namespace Data
         public void Update(Funcion funcion, int id)
         {
             _context.Funciones.Update(funcion);
+
             _context.SaveChanges();
         }
 

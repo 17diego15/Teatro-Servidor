@@ -9,7 +9,8 @@ namespace Data
         public TeatroContext(DbContextOptions<TeatroContext> options)
     : base(options)
         {
-
+            //preguntar si poner esto
+        ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
         public DbSet<Actor> Actores { get; set; }

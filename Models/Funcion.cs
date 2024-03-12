@@ -18,7 +18,7 @@ public class Funcion
     [Required]
     public string? Disponibilidad { get; set; }
 
-    public virtual Obra? Obra { get; set; }
-    public virtual Sala? Sala { get; set; }
+    public Obra? Obra { get; set; }
+    public Sala? Sala { get; set; }
 }
 
