@@ -3,14 +3,14 @@ using Models;
 using Microsoft.Extensions.Configuration;
 
 namespace Data
-{
+{       
     public class TeatroContext : DbContext
     {
         public TeatroContext(DbContextOptions<TeatroContext> options)
     : base(options)
         {
             //preguntar si poner esto
-        ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+        //ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
         public DbSet<Actor> Actores { get; set; }
