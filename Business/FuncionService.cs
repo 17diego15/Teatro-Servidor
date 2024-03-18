@@ -23,32 +23,54 @@ public class FuncionService
         try
         {
             var funciones = _funcionRepository.GetAll();
+            var funcionDtos = new List<FuncionDto>();
 
-            var funcionDtos = funciones.Select(f => new FuncionDto
+            foreach (var f in funciones)
             {
-                FuncionID = f.FuncionID,
-                ObraID = f.ObraID,
-                SalaID = f.SalaID,
-                Fecha = f.Fecha,
-                Hora = f.Hora,
-                Disponibilidad = f.Disponibilidad,
+                var totalAsientosInicial = (f.Sala.NumeroFilas ?? 0) * (f.Sala.NumeroColumnas ?? 0);
+                var totalAsientosAjustados = SitiosCorrectos(f.SalaID, totalAsientosInicial);
+                var reservas = _funcionRepository.GetFunciones(f.FuncionID);
+                var asientosRestantes = totalAsientosAjustados - reservas;
+                _logger.LogInformation($"Función ID: {f.FuncionID} - Total asientos inicial: {totalAsientosInicial}, Total asientos ajustados: {totalAsientosAjustados}, Reservas: {reservas}, Asientos restantes: {asientosRestantes}");
 
-                Obra = new ObraDto
+                var funcionDto = new FuncionDto
                 {
-                    ObraID = f.Obra.ObraID,
-                    Titulo = f.Obra.Titulo,
-                    Director = f.Obra.Director,
-                    Sinopsis = f.Obra.Sinopsis,
-                    Duración = f.Obra.Duración,
-                    Precio = f.Obra.Precio,
-                    Imagen = f.Obra.Imagen,
-                    Actores = f.Obra.ObraActores.Select(oa => new ActorDto
+                    FuncionID = f.FuncionID,
+                    ObraID = f.ObraID,
+                    SalaID = f.SalaID,
+                    Fecha = f.Fecha,
+                    Hora = f.Hora,
+                    Disponibilidad = f.Disponibilidad,
+                    AsientosDisponibles = totalAsientosAjustados,
+                    AsientosRestantes = asientosRestantes,
+
+                    Obra = new ObraDto
                     {
-                        ActorId = oa.ActorId,
-                        Nombre = oa.Actor.Nombre
-                    }).ToList()
-                }
-            }).ToList();
+                        ObraID = f.Obra.ObraID,
+                        Titulo = f.Obra.Titulo,
+                        Director = f.Obra.Director,
+                        Sinopsis = f.Obra.Sinopsis,
+                        Duración = f.Obra.Duración,
+                        Precio = f.Obra.Precio,
+                        Imagen = f.Obra.Imagen,
+                        Actores = f.Obra.ObraActores.Select(oa => new ActorDto
+                        {
+                            ActorId = oa.ActorId,
+                            Nombre = oa.Actor.Nombre
+                        }).ToList()
+                    },
+                    Sala = new SalaDto
+                    {
+                        SalaID = f.Sala.SalaID,
+                        Nombre = f.Sala.Nombre,
+                        NumeroFilas = f.Sala.NumeroFilas ?? 0,
+                        NumeroColumnas = f.Sala.NumeroColumnas ?? 0,
+                    }
+                };
+
+                funcionDtos.Add(funcionDto);
+            }
+
             _logger.LogInformation($"Retornadas {funciones.Count} funciones.");
             return funcionDtos;
         }
@@ -70,6 +92,13 @@ public class FuncionService
                 _logger.LogWarning($"Funcion con ID: {id} no encontrada.");
                 return null;
             }
+
+            var totalAsientosInicial = (funcion.Sala.NumeroFilas ?? 0) * (funcion.Sala.NumeroColumnas ?? 0);
+            var totalAsientosAjustados = SitiosCorrectos(funcion.SalaID, totalAsientosInicial);
+            var reservas = _funcionRepository.GetFunciones(id);
+            var asientosRestantes = totalAsientosAjustados - reservas;
+            _logger.LogInformation($"Función ID: {id} - Total asientos inicial: {totalAsientosInicial}, Total asientos ajustados: {totalAsientosAjustados}, Reservas: {reservas}, Asientos restantes: {asientosRestantes}");
+
             var funcionDto = new FuncionDto
             {
                 FuncionID = funcion.FuncionID,
@@ -78,6 +107,8 @@ public class FuncionService
                 Fecha = funcion.Fecha,
                 Hora = funcion.Hora,
                 Disponibilidad = funcion.Disponibilidad,
+                AsientosDisponibles = totalAsientosAjustados,
+                AsientosRestantes = asientosRestantes,
 
                 Obra = new ObraDto
                 {
@@ -199,37 +230,81 @@ public class FuncionService
                 return null;
             }
 
-            var funcionDtos = obras.Select(obra => new FuncionDto
+            var funcionDtos = obras.Select(obra =>
             {
-                FuncionID = obra.FuncionID,
-                ObraID = obra.ObraID,
-                SalaID = obra.SalaID,
-                Fecha = obra.Fecha,
-                Hora = obra.Hora,
-                Disponibilidad = obra.Disponibilidad,
-                Obra = new ObraDto
+                var totalAsientosInicial = (obra.Sala.NumeroFilas ?? 0) * (obra.Sala.NumeroColumnas ?? 0);
+                var totalAsientosAjustados = SitiosCorrectos(obra.SalaID, totalAsientosInicial);
+                var reservas = _funcionRepository.GetFunciones(obra.FuncionID);
+                var asientosRestantes = totalAsientosAjustados - reservas;
+
+                return new FuncionDto
                 {
-                    ObraID = obra.Obra.ObraID,
-                    Titulo = obra.Obra.Titulo,
-                    Director = obra.Obra.Director,
-                    Sinopsis = obra.Obra.Sinopsis,
-                    Duración = obra.Obra.Duración,
-                    Precio = obra.Obra.Precio,
-                    Imagen = obra.Obra.Imagen,
-                    Actores = obra.Obra.ObraActores.Select(oa => new ActorDto
+                    FuncionID = obra.FuncionID,
+                    ObraID = obra.ObraID,
+                    SalaID = obra.SalaID,
+                    Fecha = obra.Fecha,
+                    Hora = obra.Hora,
+                    Disponibilidad = obra.Disponibilidad,
+                    AsientosDisponibles = totalAsientosAjustados,
+                    AsientosRestantes = asientosRestantes,
+                    Obra = new ObraDto
                     {
-                        ActorId = oa.ActorId,
-                        Nombre = oa.Actor.Nombre
-                    }).ToList()
-                }
+                        ObraID = obra.Obra.ObraID,
+                        Titulo = obra.Obra.Titulo,
+                        Director = obra.Obra.Director,
+                        Sinopsis = obra.Obra.Sinopsis,
+                        Duración = obra.Obra.Duración,
+                        Precio = obra.Obra.Precio,
+                        Imagen = obra.Obra.Imagen,
+                        Actores = obra.Obra.ObraActores.Select(oa => new ActorDto
+                        {
+                            ActorId = oa.ActorId,
+                            Nombre = oa.Actor.Nombre
+                        }).ToList()
+                    }
+                };
             }).ToList();
-            _logger.LogInformation($"Obra con ID: {id} encontrada.");
+            _logger.LogInformation($"Obra con ID: {id} encontrada con información de asientos incluida.");
             return funcionDtos;
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, $"Error al actualizar la obra con ID: {id}");
+            _logger.LogError(ex, $"Error al obtener las obras con ID: {id} y la información de asientos.");
             throw;
         }
+    }
+    private int SitiosCorrectos(int salaID, int totalAsientosInicial)
+    {
+        const int sala1 = 7;
+        const int sala2 = 3;
+        const int sala3 = 6;
+        const int sala4 = 5;
+        const int sala5 = 9;
+        const int sala6 = 9;
+
+        switch (salaID)
+        {
+            case 1:
+                totalAsientosInicial = totalAsientosInicial - sala1;
+                break;
+            case 2:
+                totalAsientosInicial = totalAsientosInicial - sala2;
+                break;
+            case 3:
+                totalAsientosInicial = totalAsientosInicial - sala3;
+                break;
+            case 4:
+                totalAsientosInicial = totalAsientosInicial - sala4;
+                break;
+            case 5:
+                totalAsientosInicial = totalAsientosInicial - sala5;
+                break;
+            case 6:
+                totalAsientosInicial = totalAsientosInicial - sala6;
+                break;
+            default:
+                break;
+        }
+        return totalAsientosInicial;
     }
 }

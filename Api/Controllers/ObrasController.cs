@@ -69,7 +69,7 @@ namespace Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, $"Error obteniendo al crear la obra.");
-                return StatusCode(500, "Un error ocurrió al crear la obra.");
+                return StatusCode(400, "Un error ocurrió al crear la obra.");
             }
         }
 

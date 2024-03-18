@@ -38,7 +38,7 @@ namespace Data
         public void Add(Funcion funcion)
         {
             _context.Funciones.Add(funcion);
-            
+
             _context.SaveChanges();
         }
 
@@ -72,8 +72,14 @@ namespace Data
                 .Include(f => f.Obra)
                 .ThenInclude(o => o.ObraActores)
                 .ThenInclude(oa => oa.Actor)
+                .Include(f => f.Sala)
                 .AsNoTracking()
                 .ToList();
+        }
+
+        public int GetFunciones(int funcionId)
+        {
+            return _context.Reservas.Count(r => r.FunciónID == funcionId);
         }
     }
 }
