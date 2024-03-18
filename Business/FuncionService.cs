@@ -236,6 +236,7 @@ public class FuncionService
                 var totalAsientosAjustados = SitiosCorrectos(obra.SalaID, totalAsientosInicial);
                 var reservas = _funcionRepository.GetFunciones(obra.FuncionID);
                 var asientosRestantes = totalAsientosAjustados - reservas;
+                _logger.LogInformation($"Función ID: {id} - Total asientos inicial: {totalAsientosInicial}, Total asientos ajustados: {totalAsientosAjustados}, Reservas: {reservas}, Asientos restantes: {asientosRestantes}");
 
                 return new FuncionDto
                 {
