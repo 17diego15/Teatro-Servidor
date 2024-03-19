@@ -95,12 +95,12 @@ public class UsuarioService
         }
     }
 
-    public Usuario ValidateCredentials(string nombreUsuario, string contraseña)
+    public Usuario ValidateCredentials(UsuarioDTO usuariodto)
     {
         try
         {
-            _logger.LogInformation($"Intentando validar credenciales para el usuario: {nombreUsuario}");
-            var usuario = _usuarioRepository.GetLogin(nombreUsuario, contraseña);
+            _logger.LogInformation($"Intentando validar credenciales para el usuario: {usuariodto.Nombre}");
+            var usuario = _usuarioRepository.GetLogin(usuariodto);
             return usuario;
         }
         catch (Exception ex)

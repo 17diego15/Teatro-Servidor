@@ -51,11 +51,11 @@ namespace Data
 
         public List<Usuario> GetUsuarios() => GetAll();
 
-        public Usuario GetLogin(string nombreUsuario, string contraseña)
+        public Usuario GetLogin(UsuarioDTO usuarioDto)
         {
             return _context.Usuarios
-                            .AsNoTracking()
-                            .FirstOrDefault(u => u.NombreUsuario == nombreUsuario && u.Contraseña == contraseña);
+                .AsNoTracking()
+                .FirstOrDefault(u => u.NombreUsuario == usuarioDto.Nombre && u.Contraseña == usuarioDto.Contraseña);
         }
     }
 }

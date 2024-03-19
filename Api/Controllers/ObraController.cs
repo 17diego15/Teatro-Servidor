@@ -8,12 +8,12 @@ namespace Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ObrasController : ControllerBase
+    public class ObraController : ControllerBase
     {
         private readonly ObraService _obraService;
-        private readonly ILogger<ObrasController> _logger;
+        private readonly ILogger<ObraController> _logger;
 
-        public ObrasController(ObraService obraService, ILogger<ObrasController> logger)
+        public ObraController(ObraService obraService, ILogger<ObraController> logger)
         {
             _obraService = obraService;
             _logger = logger;

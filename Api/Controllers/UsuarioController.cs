@@ -58,27 +58,27 @@ namespace Controllers
         }
 
         [HttpPost("login")]
-        public ActionResult Login(string nombreUsuario, string contraseña)
+        public ActionResult Login([FromBody] UsuarioDTO usuariodto)
         {
             try
             {
-                _logger.LogInformation($"Intento de inicio de sesión del usuario: {nombreUsuario}");
-                var usuario = _usuarioService.ValidateCredentials(nombreUsuario, contraseña);
+                _logger.LogInformation($"Intento de inicio de sesión del usuario: {usuariodto.Nombre}");
+                var usuario = _usuarioService.ValidateCredentials(usuariodto);
 
                 if (usuario != null)
                 {
-                    _logger.LogInformation($"Usuario {nombreUsuario} autenticado correctamente");
+                    _logger.LogInformation($"Usuario {usuariodto.Nombre} autenticado correctamente");
                     return Ok(usuario);
                 }
                 else
                 {
-                    _logger.LogInformation($"Autenticación fallida para el usuario: {nombreUsuario}");
+                    _logger.LogInformation($"Autenticación fallida para el usuario: {usuariodto.Nombre}");
                     return Unauthorized("Credenciales incorrectas");
                 }
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Error al realizar el inicio de sesión.");
+                _logger.LogError(ex, "Error al realizar el inicio de sesión.");
                 return StatusCode(500, "Se produjo un error al intentar iniciar sesión.");
             }
         }
