@@ -1085,6 +1085,9 @@ namespace Data.Migrations
                     b.Property<int?>("SalaID")
                         .HasColumnType("int");
 
+                    b.Property<int?>("UsuarioID")
+                        .HasColumnType("int");
+
                     b.HasKey("ReservaID");
 
                     b.HasIndex("SalaID");

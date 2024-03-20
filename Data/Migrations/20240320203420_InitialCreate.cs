@@ -137,6 +137,7 @@ namespace Data.Migrations
                     FunciónID = table.Column<int>(type: "int", nullable: true),
                     NumeroFila = table.Column<int>(type: "int", nullable: false),
                     NumeroColumna = table.Column<int>(type: "int", nullable: false),
+                    UsuarioID = table.Column<int>(type: "int", nullable: true),
                     SalaID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>

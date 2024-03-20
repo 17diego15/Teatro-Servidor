@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(TeatroContext))]
-    [Migration("20240312162705_InitialCreate")]
+    [Migration("20240320203420_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -1086,6 +1086,9 @@ namespace Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("SalaID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UsuarioID")
                         .HasColumnType("int");
 
                     b.HasKey("ReservaID");
