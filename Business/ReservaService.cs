@@ -20,12 +20,12 @@ public class ReservaService
         _logger = logger;
     }
 
-    public List<ReservaDto> GetAll()
+    public List<ReservaDto> GetAll(int funcionID = 0)
     {
         _logger.LogInformation("Obteniendo todas las reservas.");
         try
         {
-            var reserva = _reservaRepository.GetAll();
+            var reserva = _reservaRepository.GetAll(funcionID);
 
             var reservaDto = reserva.Select(r => new ReservaDto
             {

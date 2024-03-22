@@ -14,14 +14,20 @@ namespace Data
             _context = context;
         }
 
-        public List<Funcion> GetAll()
+        public List<Funcion> GetAll(int obraID = 0)
         {
-            return _context.Funciones
-            .Include(f => f.Obra)
-            .ThenInclude(o => o.ObraActores)
-            .ThenInclude(oa => oa.Actor)
-            .Include(f => f.Sala)
-            .ToList();
+            IQueryable<Funcion> query = _context.Funciones
+                .Include(f => f.Obra)
+                .ThenInclude(o => o.ObraActores)
+                .ThenInclude(oa => oa.Actor)
+                .Include(f => f.Sala);
+
+            if (obraID > 0)
+            {
+                query = query.Where(f => f.ObraID == obraID);
+            }
+
+            return query.ToList();
         }
 
         public Funcion? Get(int id)

@@ -17,12 +17,12 @@ public class FuncionService
         _logger = logger;
     }
 
-    public List<FuncionDto> GetAll()
+    public List<FuncionDto> GetAll(int obraID = 0)
     {
         _logger.LogInformation("Obteniendo todas las funciones.");
         try
         {
-            var funciones = _funcionRepository.GetAll();
+            var funciones = _funcionRepository.GetAll(obraID);
             var funcionDtos = new List<FuncionDto>();
 
             foreach (var f in funciones)

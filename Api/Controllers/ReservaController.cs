@@ -19,12 +19,20 @@ namespace Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<ReservaDto>> GetAll()
+        public ActionResult<List<ReservaDto>> GetAll(int funcionID = 0)
         {
             try
             {
                 _logger.LogInformation("Solicitando la lista de todas las reservas.");
-                return _reservaService.GetAll();
+                var reservas = _reservaService.GetAll(funcionID);
+
+                if (funcionID > 0 && !reservas.Any())
+                {
+                    _logger.LogWarning($"No se encontraron reservas para la función con ID {funcionID}.");
+                    return NotFound($"No se encontraron reservas para la función con ID {funcionID}.");
+                }
+
+                return reservas;
             }
             catch (Exception ex)
             {

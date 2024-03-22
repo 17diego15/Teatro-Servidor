@@ -20,12 +20,20 @@ namespace Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<FuncionDto>> GetAll()
+        public ActionResult<List<FuncionDto>> GetAll(int obraID = 0)
         {
             try
             {
                 _logger.LogInformation("Solicitando la lista de todas las funciones.");
-                return _funcionService.GetAll();
+                var funciones = _funcionService.GetAll(obraID);
+
+                if (obraID > 0 && !funciones.Any())
+                {
+                    _logger.LogWarning($"No se encontraron funciones para la obra con ID {obraID}.");
+                    return NotFound($"No se encontraron funciones para la obra con ID {obraID}.");
+                }
+
+                return funciones;
             }
             catch (Exception ex)
             {
