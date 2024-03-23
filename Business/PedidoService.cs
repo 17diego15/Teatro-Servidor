@@ -20,12 +20,12 @@ public class PedidoService
         _logger = logger;
     }
 
-    public List<PedidoDto> GetAll()
+    public List<PedidoDto> GetAll(int usuarioID = 0)
     {
         _logger.LogInformation("Obteniendo todos los pedidos.");
         try
         {
-            var pedido = _pedidoRepository.GetAll();
+            var pedido = _pedidoRepository.GetAll(usuarioID);
 
             var pedidoDto = pedido.Select(p => new PedidoDto
             {
@@ -35,7 +35,7 @@ public class PedidoService
                 Precio = p.Precio,
                 PrecioTotal = p.PrecioTotal,
                 Fecha = p.Fecha,
-                NumeroDeReservas = p.Reservas?.Count ?? 0,
+                NumeroDeReservas = p.NumeroDeReservas ?? 0,
             }).ToList();
             _logger.LogInformation($"Retornadas {pedido.Count} pedidos.");
             return pedidoDto;
@@ -67,7 +67,7 @@ public class PedidoService
                 Precio = pedido.Precio,
                 PrecioTotal = pedido.PrecioTotal,
                 Fecha = pedido.Fecha,
-                NumeroDeReservas = pedido.Reservas?.Count ?? 0,
+                NumeroDeReservas = pedido.NumeroDeReservas ?? 0,
             };
             _logger.LogInformation($"Pedido con ID: {id} encontrada.");
             return pedidoDto;

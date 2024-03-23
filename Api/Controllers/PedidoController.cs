@@ -20,12 +20,12 @@ namespace Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<PedidoDto>> GetAll()
+        public ActionResult<List<PedidoDto>> GetAll(int usuarioID = 0)
         {
             try
             {
                 _logger.LogInformation("Solicitando la lista de todos los pedidos.");
-                return _pedidoService.GetAll();
+                return _pedidoService.GetAll(usuarioID);
             }
             catch (Exception ex)
             {

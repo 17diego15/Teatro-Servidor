@@ -15,13 +15,17 @@ namespace Data
             _context = context;
         }
 
-        public List<Pedido> GetAll()
+        public List<Pedido> GetAll(int UsuarioID)
         {
-            return _context.Pedidos
+            IQueryable<Pedido> query = _context.Pedidos
             .Include(p => p.Usuario)
             .Include(p => p.Funcion)
-            .Include(p => p.Reservas)
-            .ToList();
+            .Include(p => p.Reservas);
+            if (UsuarioID > 0)
+            {
+                query = query.Where(p => p.UsuarioID == UsuarioID);
+            }
+            return query.ToList();
         }
 
         public Pedido? Get(int id)
