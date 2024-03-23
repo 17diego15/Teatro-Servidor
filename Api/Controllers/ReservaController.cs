@@ -64,29 +64,6 @@ namespace Controllers
             }
         }
 
-        [HttpGet("/funcion/{id}/reservas")]
-        public ActionResult<List<ReservaDto>> GetFuncion(int id)
-        {
-            try
-            {
-                _logger.LogInformation($"Buscando funcion con ID: {id}");
-                var funcion = _reservaService.GetFuncion(id);
-
-                if (funcion == null)
-                {
-                    _logger.LogWarning($"Funcion con ID: {id} no encontrada.");
-                    return NotFound();
-                }
-
-                return funcion;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Error obteniendo la funcion con ID: {id}.");
-                return StatusCode(500, "Un error ocurrió al obtener la funcion.");
-            }
-        }
-
         [HttpPost]
         public IActionResult Create(List<ReservaDto> reservasDto)
         {

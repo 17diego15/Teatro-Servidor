@@ -219,61 +219,6 @@ public class FuncionService
         }
     }
 
-    public List<FuncionDto> GetObras(int id)
-    {
-        try
-        {
-            var obras = _funcionRepository.GetObras(id);
-            if (obras == null || !obras.Any())
-            {
-                _logger.LogWarning($"Obra con ID: {id} no encontrada.");
-                return null;
-            }
-
-            var funcionDtos = obras.Select(obra =>
-            {
-                var totalAsientosInicial = (obra.Sala.NumeroFilas ?? 0) * (obra.Sala.NumeroColumnas ?? 0);
-                var totalAsientosAjustados = SitiosCorrectos(obra.SalaID, totalAsientosInicial);
-                var reservas = _funcionRepository.GetFunciones(obra.FuncionID);
-                var asientosRestantes = totalAsientosAjustados - reservas;
-                _logger.LogInformation($"Función ID: {id} - Total asientos inicial: {totalAsientosInicial}, Total asientos ajustados: {totalAsientosAjustados}, Reservas: {reservas}, Asientos restantes: {asientosRestantes}");
-
-                return new FuncionDto
-                {
-                    FuncionID = obra.FuncionID,
-                    ObraID = obra.ObraID,
-                    SalaID = obra.SalaID,
-                    Fecha = obra.Fecha,
-                    Hora = obra.Hora,
-                    Disponibilidad = obra.Disponibilidad,
-                    AsientosDisponibles = totalAsientosAjustados,
-                    AsientosRestantes = asientosRestantes,
-                    Obra = new ObraDto
-                    {
-                        ObraID = obra.Obra.ObraID,
-                        Titulo = obra.Obra.Titulo,
-                        Director = obra.Obra.Director,
-                        Sinopsis = obra.Obra.Sinopsis,
-                        Duración = obra.Obra.Duración,
-                        Precio = obra.Obra.Precio,
-                        Imagen = obra.Obra.Imagen,
-                        Actores = obra.Obra.ObraActores.Select(oa => new ActorDto
-                        {
-                            ActorId = oa.ActorId,
-                            Nombre = oa.Actor.Nombre
-                        }).ToList()
-                    }
-                };
-            }).ToList();
-            _logger.LogInformation($"Obra con ID: {id} encontrada con información de asientos incluida.");
-            return funcionDtos;
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, $"Error al obtener las obras con ID: {id} y la información de asientos.");
-            throw;
-        }
-    }
     private int SitiosCorrectos(int salaID, int totalAsientosInicial)
     {
         const int sala1 = 7;

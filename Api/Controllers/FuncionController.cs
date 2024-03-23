@@ -137,30 +137,5 @@ namespace Controllers
                 return StatusCode(500, "Un error ocurrió al eliminar la funcion.");
             }
         }
-
-        [HttpGet("/obras/{id}/funcion")]
-        public ActionResult GetObras(int id)
-        {
-            try
-            {
-                _logger.LogInformation($"Buscando funcion con ID: {id}");
-                var funcion = _funcionService.GetObras(id);
-
-                if (funcion != null)
-                {
-                    return Ok(funcion);
-                }
-                else
-                {
-                    _logger.LogWarning($"Funcion con ID: {id} no encontrada.");
-                    return NotFound();
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Error obteniendo al obtener la funcion con ID: {id}.");
-                return StatusCode(500, "Un error ocurrió al obtener la funcion.");
-            }
-        }
     }
 }
