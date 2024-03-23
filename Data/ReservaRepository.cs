@@ -34,7 +34,7 @@ public class ReservaRepository : IReservaRepository
         .FirstOrDefault(r => r.ReservaID == id);
     }
 
-    public List<Reserva>? GetFuncion(int id)
+    public List<Reserva> GetFuncion(int id)
     {
         return _context.Reservas
         .Where(r => r.FunciónID == id)

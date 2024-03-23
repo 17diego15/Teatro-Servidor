@@ -14,5 +14,6 @@ public class PedidoDto
     public decimal? PrecioTotal { get; set; }
 
     public DateTime? Fecha { get; set; }
+    public int NumeroDeReservas { get; set; }
 }
 

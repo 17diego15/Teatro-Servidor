@@ -19,6 +19,14 @@ public class Pedido
     public decimal? PrecioTotal { get; set; }
 
     [Required]
+    public int? NumeroDeReservas { get; set; }
+
+
+    [Required]
     public DateTime? Fecha { get; set; }
+
+    public Usuario? Usuario { get; set; }
+    public Funcion? Funcion { get; set; }
+    public List<Reserva> Reservas { get; set; } = new List<Reserva>();
 }
 

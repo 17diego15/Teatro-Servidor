@@ -6,8 +6,6 @@ public interface IPedidoRepository
 {
     List<Pedido> GetAll();
     Pedido? Get(int id);
-    void Add(List<Pedido> pedido);
-    void Delete(int id);
-    void Update(Pedido pedido, int id);
+    void Add(Pedido pedido);
 }
 

@@ -129,6 +129,36 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Pedidos",
+                columns: table => new
+                {
+                    PedidoID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UsuarioID = table.Column<int>(type: "int", nullable: false),
+                    FuncionID = table.Column<int>(type: "int", nullable: false),
+                    Precio = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PrecioTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    NumeroDeReservas = table.Column<int>(type: "int", nullable: false),
+                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Pedidos", x => x.PedidoID);
+                    table.ForeignKey(
+                        name: "FK_Pedidos_Funciones_FuncionID",
+                        column: x => x.FuncionID,
+                        principalTable: "Funciones",
+                        principalColumn: "FuncionID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Pedidos_Usuarios_UsuarioID",
+                        column: x => x.UsuarioID,
+                        principalTable: "Usuarios",
+                        principalColumn: "UsuarioID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Reservas",
                 columns: table => new
                 {
@@ -138,11 +168,17 @@ namespace Data.Migrations
                     NumeroFila = table.Column<int>(type: "int", nullable: false),
                     NumeroColumna = table.Column<int>(type: "int", nullable: false),
                     UsuarioID = table.Column<int>(type: "int", nullable: true),
-                    SalaID = table.Column<int>(type: "int", nullable: true)
+                    SalaID = table.Column<int>(type: "int", nullable: true),
+                    PedidoID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Reservas", x => x.ReservaID);
+                    table.ForeignKey(
+                        name: "FK_Reservas_Pedidos_PedidoID",
+                        column: x => x.PedidoID,
+                        principalTable: "Pedidos",
+                        principalColumn: "PedidoID");
                     table.ForeignKey(
                         name: "FK_Reservas_Salas_SalaID",
                         column: x => x.SalaID,
@@ -367,6 +403,21 @@ namespace Data.Migrations
                 column: "ActorId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Pedidos_FuncionID",
+                table: "Pedidos",
+                column: "FuncionID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pedidos_UsuarioID",
+                table: "Pedidos",
+                column: "UsuarioID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Reservas_PedidoID",
+                table: "Reservas",
+                column: "PedidoID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Reservas_SalaID",
                 table: "Reservas",
                 column: "SalaID");
@@ -376,19 +427,22 @@ namespace Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Funciones");
-
-            migrationBuilder.DropTable(
                 name: "ObraActores");
 
             migrationBuilder.DropTable(
                 name: "Reservas");
 
             migrationBuilder.DropTable(
-                name: "Usuarios");
+                name: "Actores");
 
             migrationBuilder.DropTable(
-                name: "Actores");
+                name: "Pedidos");
+
+            migrationBuilder.DropTable(
+                name: "Funciones");
+
+            migrationBuilder.DropTable(
+                name: "Usuarios");
 
             migrationBuilder.DropTable(
                 name: "Obras");
