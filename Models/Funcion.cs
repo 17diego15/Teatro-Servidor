@@ -20,5 +20,6 @@ public class Funcion
 
     public Obra? Obra { get; set; }
     public Sala? Sala { get; set; }
+    public List<Pedido>? Pedidos { get; set; }
 }
 

@@ -1063,6 +1063,47 @@ namespace Data.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Models.Pedido", b =>
+                {
+                    b.Property<int>("PedidoID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PedidoID"));
+
+                    b.Property<DateTime?>("Fecha")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("FuncionID")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("NumeroDeReservas")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("Precio")
+                        .IsRequired()
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("PrecioTotal")
+                        .IsRequired()
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("UsuarioID")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.HasKey("PedidoID");
+
+                    b.HasIndex("FuncionID");
+
+                    b.HasIndex("UsuarioID");
+
+                    b.ToTable("Pedidos");
+                });
+
             modelBuilder.Entity("Models.Reserva", b =>
                 {
                     b.Property<int>("ReservaID")
@@ -1082,10 +1123,18 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("int");
 
+                    b.Property<int?>("PedidoID")
+                        .HasColumnType("int");
+
                     b.Property<int?>("SalaID")
                         .HasColumnType("int");
 
+                    b.Property<int?>("UsuarioID")
+                        .HasColumnType("int");
+
                     b.HasKey("ReservaID");
+
+                    b.HasIndex("PedidoID");
 
                     b.HasIndex("SalaID");
 
@@ -1237,11 +1286,36 @@ namespace Data.Migrations
                     b.Navigation("Obra");
                 });
 
+            modelBuilder.Entity("Models.Pedido", b =>
+                {
+                    b.HasOne("Models.Funcion", "Funcion")
+                        .WithMany("Pedidos")
+                        .HasForeignKey("FuncionID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Models.Usuario", "Usuario")
+                        .WithMany("Pedidos")
+                        .HasForeignKey("UsuarioID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Funcion");
+
+                    b.Navigation("Usuario");
+                });
+
             modelBuilder.Entity("Models.Reserva", b =>
                 {
+                    b.HasOne("Models.Pedido", "Pedido")
+                        .WithMany("Reservas")
+                        .HasForeignKey("PedidoID");
+
                     b.HasOne("Models.Sala", "Sala")
                         .WithMany()
                         .HasForeignKey("SalaID");
+
+                    b.Navigation("Pedido");
 
                     b.Navigation("Sala");
                 });
@@ -1251,6 +1325,11 @@ namespace Data.Migrations
                     b.Navigation("ObraActores");
                 });
 
+            modelBuilder.Entity("Models.Funcion", b =>
+                {
+                    b.Navigation("Pedidos");
+                });
+
             modelBuilder.Entity("Models.Obra", b =>
                 {
                     b.Navigation("Funciones");
@@ -1258,9 +1337,19 @@ namespace Data.Migrations
                     b.Navigation("ObraActores");
                 });
 
+            modelBuilder.Entity("Models.Pedido", b =>
+                {
+                    b.Navigation("Reservas");
+                });
+
             modelBuilder.Entity("Models.Sala", b =>
                 {
                     b.Navigation("Funciones");
+                });
+
+            modelBuilder.Entity("Models.Usuario", b =>
+                {
+                    b.Navigation("Pedidos");
                 });
 #pragma warning restore 612, 618
         }

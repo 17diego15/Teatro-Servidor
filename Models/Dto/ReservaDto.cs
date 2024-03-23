@@ -8,6 +8,7 @@ public class ReservaDto
     //public int SalaID { get; set; }
     public int NumeroFila { get; set; }
     public int NumeroColumna { get; set; }
+    public int UsuarioID { get; set; }  
     //public SalaDto? Sala { get; set; }
 }
 

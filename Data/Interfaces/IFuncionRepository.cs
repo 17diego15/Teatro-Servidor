@@ -4,7 +4,7 @@ namespace Data
 {
     public interface IFuncionRepository
     {
-        List<Funcion> GetAll();
+        List<Funcion> GetAll(int obraID);
         Funcion? Get(int id);
         void Add(Funcion funcion);
         void Delete(int id);

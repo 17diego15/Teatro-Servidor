@@ -19,12 +19,20 @@ namespace Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<ReservaDto>> GetAll()
+        public ActionResult<List<ReservaDto>> GetAll(int funcionID = 0)
         {
             try
             {
                 _logger.LogInformation("Solicitando la lista de todas las reservas.");
-                return _reservaService.GetAll();
+                var reservas = _reservaService.GetAll(funcionID);
+
+                if (funcionID > 0 && !reservas.Any())
+                {
+                    _logger.LogWarning($"No se encontraron reservas para la función con ID {funcionID}.");
+                    return NotFound($"No se encontraron reservas para la función con ID {funcionID}.");
+                }
+
+                return reservas;
             }
             catch (Exception ex)
             {
@@ -53,29 +61,6 @@ namespace Controllers
             {
                 _logger.LogError(ex, $"Error obteniendo la reserva con ID: {id}.");
                 return StatusCode(500, "Un error ocurrió al obtener la reserva.");
-            }
-        }
-
-        [HttpGet("/funcion/{id}/reservas")]
-        public ActionResult<List<ReservaDto>> GetFuncion(int id)
-        {
-            try
-            {
-                _logger.LogInformation($"Buscando funcion con ID: {id}");
-                var funcion = _reservaService.GetFuncion(id);
-
-                if (funcion == null)
-                {
-                    _logger.LogWarning($"Funcion con ID: {id} no encontrada.");
-                    return NotFound();
-                }
-
-                return funcion;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Error obteniendo la funcion con ID: {id}.");
-                return StatusCode(500, "Un error ocurrió al obtener la funcion.");
             }
         }
 

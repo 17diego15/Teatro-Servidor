@@ -20,12 +20,20 @@ namespace Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<FuncionDto>> GetAll()
+        public ActionResult<List<FuncionDto>> GetAll(int obraID = 0)
         {
             try
             {
                 _logger.LogInformation("Solicitando la lista de todas las funciones.");
-                return _funcionService.GetAll();
+                var funciones = _funcionService.GetAll(obraID);
+
+                if (obraID > 0 && !funciones.Any())
+                {
+                    _logger.LogWarning($"No se encontraron funciones para la obra con ID {obraID}.");
+                    return NotFound($"No se encontraron funciones para la obra con ID {obraID}.");
+                }
+
+                return funciones;
             }
             catch (Exception ex)
             {
@@ -127,31 +135,6 @@ namespace Controllers
             {
                 _logger.LogError(ex, $"Error obteniendo al eliminar la funcion con ID: {id}.");
                 return StatusCode(500, "Un error ocurrió al eliminar la funcion.");
-            }
-        }
-
-        [HttpGet("/obras/{id}/funcion")]
-        public ActionResult GetObras(int id)
-        {
-            try
-            {
-                _logger.LogInformation($"Buscando funcion con ID: {id}");
-                var funcion = _funcionService.GetObras(id);
-
-                if (funcion != null)
-                {
-                    return Ok(funcion);
-                }
-                else
-                {
-                    _logger.LogWarning($"Funcion con ID: {id} no encontrada.");
-                    return NotFound();
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Error obteniendo al obtener la funcion con ID: {id}.");
-                return StatusCode(500, "Un error ocurrió al obtener la funcion.");
             }
         }
     }
