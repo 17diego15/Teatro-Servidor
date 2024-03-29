@@ -15,5 +15,7 @@ public class PedidoDto
 
     public DateTime? Fecha { get; set; }
     public int NumeroDeReservas { get; set; }
+    public List<ReservaDto> Reservas { get; set; } = new List<ReservaDto>();
+
 }
 

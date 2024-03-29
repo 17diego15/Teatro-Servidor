@@ -65,7 +65,7 @@ namespace Controllers
                 _logger.LogInformation($"Creando nuevo pedido con id: {pedidoDto.PedidoID}");
                 var pedidoId = _pedidoService.Add(pedidoDto);
 
-                return CreatedAtAction(nameof(Get), new { id = pedidoId }, pedidoDto);
+                return Ok(new { PedidoID = pedidoId });
             }
             catch (Exception ex)
             {

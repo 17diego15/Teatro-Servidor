@@ -36,6 +36,15 @@ public class PedidoService
                 PrecioTotal = p.PrecioTotal,
                 Fecha = p.Fecha,
                 NumeroDeReservas = p.NumeroDeReservas ?? 0,
+                Reservas = p.Reservas.Select(r => new ReservaDto
+                {
+                    ReservaID = r.ReservaID,
+                    FuncionID = r.FunciónID ?? 0,
+                    NumeroFila = r.NumeroFila ?? 0,
+                    NumeroColumna = r.NumeroColumna ?? 0,
+                    UsuarioID = r.UsuarioID ?? 0,
+                    PedidoID = r.PedidoID ?? 0
+                }).ToList()
             }).ToList();
             _logger.LogInformation($"Retornadas {pedido.Count} pedidos.");
             return pedidoDto;
@@ -68,6 +77,15 @@ public class PedidoService
                 PrecioTotal = pedido.PrecioTotal,
                 Fecha = pedido.Fecha,
                 NumeroDeReservas = pedido.NumeroDeReservas ?? 0,
+                Reservas = pedido.Reservas.Select(r => new ReservaDto
+                {
+                    ReservaID = r.ReservaID,
+                    FuncionID = r.FunciónID ?? 0,
+                    NumeroFila = r.NumeroFila ?? 0,
+                    NumeroColumna = r.NumeroColumna ?? 0,
+                    UsuarioID = r.UsuarioID ?? 0,
+                    PedidoID = r.PedidoID ?? 0
+                }).ToList()
             };
             _logger.LogInformation($"Pedido con ID: {id} encontrada.");
             return pedidoDto;

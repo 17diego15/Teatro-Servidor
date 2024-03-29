@@ -17,7 +17,9 @@ public class ReservaRepository : IReservaRepository
 
     public List<Reserva> GetAll(int funcionID = 0)
     {
-        IQueryable<Reserva> query = _context.Reservas.Include(s => s.Sala);
+        IQueryable<Reserva> query = _context.Reservas
+        .Include(r => r.Sala)
+        .Include(r => r.Pedido);
 
         if (funcionID > 0)
         {

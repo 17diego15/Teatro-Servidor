@@ -34,6 +34,7 @@ public class ReservaService
                 NumeroFila = r.NumeroFila ?? 0,
                 NumeroColumna = r.NumeroColumna ?? 0,
                 UsuarioID = r.UsuarioID ?? 0,
+                PedidoID = r.PedidoID ?? 0,
             }).ToList();
             _logger.LogInformation($"Retornadas {reserva.Count} reservas.");
             return reservaDto;
@@ -71,7 +72,8 @@ public class ReservaService
                 FunciónID = reservaDto.FuncionID,
                 NumeroFila = reservaDto.NumeroFila,
                 NumeroColumna = reservaDto.NumeroColumna,
-                UsuarioID = reservaDto.UsuarioID
+                UsuarioID = reservaDto.UsuarioID,
+                PedidoID = reservaDto.PedidoID,
             }).ToList();
             _reservaRepository.Add(reservas);
             _logger.LogInformation($"Reserva agregada con éxito.");
