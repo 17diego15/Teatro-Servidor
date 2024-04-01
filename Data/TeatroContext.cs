@@ -153,11 +153,11 @@ namespace Data
                 new Obra { ObraID = 7, Titulo = "Los cadáveres no hablan", Director = "Javier Posadas", Sinopsis = "El Marqués de Milford Haven Se ha suicidado en su habitación con las puertas y las ventanas cerradas por dentro. ¿Realmente se suicidó, o fue un asesinato? Juega tu papel, atiende a las escenas y habla con los actores para descubrir el misterio que rodea la muerte del Marqués.", Duración = "120 minutos", Precio = 16, Imagen = "https://media.discordapp.net/attachments/1193559955001847920/1210266591220998305/losCadaveresNoHablan.jpg?ex=65e9ef99&is=65d77a99&hm=66334ef69feb8982b4620390df4ec2388a0a9995b72c96774156c8a17edb35a1&=&format=webp" }
                 );
             modelBuilder.Entity<Sala>().HasData(
-                new Sala { SalaID = 1, Nombre = "Sala 1", NumeroFilas = 10, NumeroColumnas = 9 },
-                new Sala { SalaID = 2, Nombre = "Sala 2", NumeroFilas = 6, NumeroColumnas = 14 },
-                new Sala { SalaID = 3, Nombre = "Sala 3", NumeroFilas = 9, NumeroColumnas = 8 },
+                new Sala { SalaID = 1, Nombre = "Sala 1", NumeroFilas = 6, NumeroColumnas = 13 },
+                new Sala { SalaID = 2, Nombre = "Sala 2", NumeroFilas = 9, NumeroColumnas = 14 },
+                new Sala { SalaID = 3, Nombre = "Sala 3", NumeroFilas = 12, NumeroColumnas = 12 },
                 new Sala { SalaID = 4, Nombre = "Sala 4", NumeroFilas = 8, NumeroColumnas = 12 },
-                new Sala { SalaID = 5, Nombre = "Sala 5", NumeroFilas = 12, NumeroColumnas = 7 },
+                new Sala { SalaID = 5, Nombre = "Sala 5", NumeroFilas = 7, NumeroColumnas = 12 },
                 new Sala { SalaID = 6, Nombre = "Sala 6", NumeroFilas = 12, NumeroColumnas = 13 }
                 );
             modelBuilder.Entity<Usuario>().HasData(
