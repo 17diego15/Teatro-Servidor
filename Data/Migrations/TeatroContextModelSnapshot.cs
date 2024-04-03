@@ -1170,22 +1170,22 @@ namespace Data.Migrations
                         {
                             SalaID = 1,
                             Nombre = "Sala 1",
-                            NumeroColumnas = 9,
-                            NumeroFilas = 10
+                            NumeroColumnas = 13,
+                            NumeroFilas = 6
                         },
                         new
                         {
                             SalaID = 2,
                             Nombre = "Sala 2",
                             NumeroColumnas = 14,
-                            NumeroFilas = 6
+                            NumeroFilas = 9
                         },
                         new
                         {
                             SalaID = 3,
                             Nombre = "Sala 3",
-                            NumeroColumnas = 8,
-                            NumeroFilas = 9
+                            NumeroColumnas = 12,
+                            NumeroFilas = 12
                         },
                         new
                         {
@@ -1198,8 +1198,8 @@ namespace Data.Migrations
                         {
                             SalaID = 5,
                             Nombre = "Sala 5",
-                            NumeroColumnas = 7,
-                            NumeroFilas = 12
+                            NumeroColumnas = 12,
+                            NumeroFilas = 7
                         },
                         new
                         {

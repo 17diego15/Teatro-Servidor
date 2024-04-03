@@ -271,11 +271,11 @@ namespace Data.Migrations
                 columns: new[] { "SalaID", "Nombre", "NumeroColumnas", "NumeroFilas" },
                 values: new object[,]
                 {
-                    { 1, "Sala 1", 9, 10 },
-                    { 2, "Sala 2", 14, 6 },
-                    { 3, "Sala 3", 8, 9 },
+                    { 1, "Sala 1", 13, 6 },
+                    { 2, "Sala 2", 14, 9 },
+                    { 3, "Sala 3", 12, 12 },
                     { 4, "Sala 4", 12, 8 },
-                    { 5, "Sala 5", 7, 12 },
+                    { 5, "Sala 5", 12, 7 },
                     { 6, "Sala 6", 13, 12 }
                 });
 
