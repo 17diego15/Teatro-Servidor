@@ -15,12 +15,20 @@ public class ReservaRepository : IReservaRepository
         _context = context;
     }
 
-    public List<Reserva> GetAll()
+    public List<Reserva> GetAll(int funcionID = 0)
     {
-        return _context.Reservas
-        .Include(s => s.Sala)
-        .ToList();
+        IQueryable<Reserva> query = _context.Reservas
+        .Include(r => r.Sala)
+        .Include(r => r.Pedido);
+
+        if (funcionID > 0)
+        {
+            query = query.Where(s => s.FunciónID == funcionID);
+        }
+
+        return query.ToList();
     }
+
     public Reserva? Get(int id)
     {
         return _context.Reservas
@@ -28,7 +36,7 @@ public class ReservaRepository : IReservaRepository
         .FirstOrDefault(r => r.ReservaID == id);
     }
 
-    public List<Reserva>? GetFuncion(int id)
+    public List<Reserva> GetFuncion(int id)
     {
         return _context.Reservas
         .Where(r => r.FunciónID == id)

@@ -14,14 +14,21 @@ namespace Data
             _context = context;
         }
 
-        public List<Funcion> GetAll()
+        public List<Funcion> GetAll(int obraID = 0)
         {
-            return _context.Funciones
-            .Include(f => f.Obra)
-            .ThenInclude(o => o.ObraActores)
-            .ThenInclude(oa => oa.Actor)
-            .Include(f => f.Sala)
-            .ToList();
+            DateTime now = DateTime.Now;
+            IQueryable<Funcion> query = _context.Funciones
+                .Include(f => f.Obra)
+                .ThenInclude(o => o.ObraActores)
+                .ThenInclude(oa => oa.Actor)
+                .Include(f => f.Sala);
+            if (obraID > 0)
+            {
+                query = query.Where(f => f.ObraID == obraID &&
+                                        (f.Fecha.Date > now.Date ||
+                                        (f.Fecha.Date == now.Date)));
+            }
+            return query.ToList();
         }
 
         public Funcion? Get(int id)
@@ -38,6 +45,7 @@ namespace Data
         public void Add(Funcion funcion)
         {
             _context.Funciones.Add(funcion);
+
             _context.SaveChanges();
         }
 
@@ -54,24 +62,25 @@ namespace Data
         public void Update(Funcion funcion, int id)
         {
             _context.Funciones.Update(funcion);
+
             _context.SaveChanges();
         }
 
         public List<Funcion> GetObras(int id)
         {
-            DateTime now = DateTime.Now;
             return _context.Funciones
-            //descomentar cuando se actualicen las fechas
-                // .Where(f => f.ObraID == id &&
-                //     (f.Fecha.Date > now.Date ||
-                //     (f.Fecha.Date == now.Date &&
-                //     f.Hora > now.TimeOfDay)))
                 .Where(f => f.ObraID == id)
                 .Include(f => f.Obra)
                 .ThenInclude(o => o.ObraActores)
                 .ThenInclude(oa => oa.Actor)
+                .Include(f => f.Sala)
                 .AsNoTracking()
                 .ToList();
+        }
+
+        public int GetFunciones(int funcionId)
+        {
+            return _context.Reservas.Count(r => r.FunciónID == funcionId);
         }
     }
 }

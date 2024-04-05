@@ -17,5 +17,7 @@ public class Usuario
 
     [Required]
     public bool IsAdmin { get; set; }
+
+    public List<Pedido>? Pedidos { get; set; }
 }
 

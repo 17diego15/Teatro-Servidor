@@ -351,9 +351,9 @@ namespace Data.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
-                    b.Property<TimeSpan?>("Hora")
+                    b.Property<string>("Hora")
                         .IsRequired()
-                        .HasColumnType("time");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ObraID")
                         .HasColumnType("int");
@@ -374,8 +374,8 @@ namespace Data.Migrations
                         {
                             FuncionID = 1,
                             Disponibilidad = "Si",
-                            Fecha = new DateTime(2023, 12, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = new TimeSpan(0, 20, 0, 0, 0),
+                            Fecha = new DateTime(2024, 12, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hora = "20:00",
                             ObraID = 1,
                             SalaID = 3
                         },
@@ -383,8 +383,8 @@ namespace Data.Migrations
                         {
                             FuncionID = 2,
                             Disponibilidad = "Si",
-                            Fecha = new DateTime(2023, 12, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = new TimeSpan(0, 18, 0, 0, 0),
+                            Fecha = new DateTime(2024, 12, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hora = "18:00",
                             ObraID = 1,
                             SalaID = 4
                         },
@@ -392,8 +392,8 @@ namespace Data.Migrations
                         {
                             FuncionID = 3,
                             Disponibilidad = "Si",
-                            Fecha = new DateTime(2023, 12, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = new TimeSpan(0, 16, 0, 0, 0),
+                            Fecha = new DateTime(2024, 12, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hora = "16:00",
                             ObraID = 1,
                             SalaID = 6
                         },
@@ -401,8 +401,8 @@ namespace Data.Migrations
                         {
                             FuncionID = 4,
                             Disponibilidad = "Si",
-                            Fecha = new DateTime(2023, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = new TimeSpan(0, 20, 0, 0, 0),
+                            Fecha = new DateTime(2024, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hora = "20:00",
                             ObraID = 1,
                             SalaID = 2
                         },
@@ -410,8 +410,8 @@ namespace Data.Migrations
                         {
                             FuncionID = 5,
                             Disponibilidad = "Si",
-                            Fecha = new DateTime(2023, 12, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = new TimeSpan(0, 20, 0, 0, 0),
+                            Fecha = new DateTime(2024, 12, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hora = "20:00",
                             ObraID = 1,
                             SalaID = 6
                         },
@@ -419,8 +419,8 @@ namespace Data.Migrations
                         {
                             FuncionID = 6,
                             Disponibilidad = "Si",
-                            Fecha = new DateTime(2023, 12, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = new TimeSpan(0, 18, 0, 0, 0),
+                            Fecha = new DateTime(2024, 12, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hora = "18:00",
                             ObraID = 1,
                             SalaID = 5
                         },
@@ -428,8 +428,8 @@ namespace Data.Migrations
                         {
                             FuncionID = 7,
                             Disponibilidad = "Si",
-                            Fecha = new DateTime(2023, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = new TimeSpan(0, 16, 0, 0, 0),
+                            Fecha = new DateTime(2024, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hora = "16:00",
                             ObraID = 1,
                             SalaID = 2
                         },
@@ -437,8 +437,8 @@ namespace Data.Migrations
                         {
                             FuncionID = 8,
                             Disponibilidad = "Si",
-                            Fecha = new DateTime(2023, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = new TimeSpan(0, 18, 0, 0, 0),
+                            Fecha = new DateTime(2024, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hora = "18:00",
                             ObraID = 1,
                             SalaID = 5
                         },
@@ -446,8 +446,8 @@ namespace Data.Migrations
                         {
                             FuncionID = 9,
                             Disponibilidad = "Si",
-                            Fecha = new DateTime(2023, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = new TimeSpan(0, 20, 0, 0, 0),
+                            Fecha = new DateTime(2024, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hora = "20:00",
                             ObraID = 2,
                             SalaID = 6
                         },
@@ -455,8 +455,8 @@ namespace Data.Migrations
                         {
                             FuncionID = 10,
                             Disponibilidad = "Si",
-                            Fecha = new DateTime(2023, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = new TimeSpan(0, 18, 0, 0, 0),
+                            Fecha = new DateTime(2024, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hora = "18:00",
                             ObraID = 2,
                             SalaID = 2
                         },
@@ -464,8 +464,8 @@ namespace Data.Migrations
                         {
                             FuncionID = 11,
                             Disponibilidad = "Si",
-                            Fecha = new DateTime(2023, 12, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = new TimeSpan(0, 16, 0, 0, 0),
+                            Fecha = new DateTime(2024, 12, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hora = "16:00",
                             ObraID = 2,
                             SalaID = 3
                         },
@@ -473,8 +473,8 @@ namespace Data.Migrations
                         {
                             FuncionID = 12,
                             Disponibilidad = "Si",
-                            Fecha = new DateTime(2023, 12, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = new TimeSpan(0, 20, 0, 0, 0),
+                            Fecha = new DateTime(2024, 12, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hora = "20:00",
                             ObraID = 2,
                             SalaID = 1
                         },
@@ -482,8 +482,8 @@ namespace Data.Migrations
                         {
                             FuncionID = 13,
                             Disponibilidad = "Si",
-                            Fecha = new DateTime(2023, 12, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = new TimeSpan(0, 20, 0, 0, 0),
+                            Fecha = new DateTime(2024, 12, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hora = "20:00",
                             ObraID = 2,
                             SalaID = 2
                         },
@@ -491,8 +491,8 @@ namespace Data.Migrations
                         {
                             FuncionID = 14,
                             Disponibilidad = "Si",
-                            Fecha = new DateTime(2023, 12, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = new TimeSpan(0, 18, 0, 0, 0),
+                            Fecha = new DateTime(2024, 12, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hora = "18:00",
                             ObraID = 2,
                             SalaID = 1
                         },
@@ -500,8 +500,8 @@ namespace Data.Migrations
                         {
                             FuncionID = 15,
                             Disponibilidad = "Si",
-                            Fecha = new DateTime(2023, 12, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = new TimeSpan(0, 20, 0, 0, 0),
+                            Fecha = new DateTime(2024, 12, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hora = "20:00",
                             ObraID = 3,
                             SalaID = 1
                         },
@@ -509,8 +509,8 @@ namespace Data.Migrations
                         {
                             FuncionID = 16,
                             Disponibilidad = "Si",
-                            Fecha = new DateTime(2023, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = new TimeSpan(0, 18, 0, 0, 0),
+                            Fecha = new DateTime(2024, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hora = "18:00",
                             ObraID = 3,
                             SalaID = 3
                         },
@@ -518,8 +518,8 @@ namespace Data.Migrations
                         {
                             FuncionID = 17,
                             Disponibilidad = "Si",
-                            Fecha = new DateTime(2023, 12, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = new TimeSpan(0, 16, 0, 0, 0),
+                            Fecha = new DateTime(2024, 12, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hora = "16:00",
                             ObraID = 3,
                             SalaID = 2
                         },
@@ -527,8 +527,8 @@ namespace Data.Migrations
                         {
                             FuncionID = 18,
                             Disponibilidad = "Si",
-                            Fecha = new DateTime(2023, 12, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = new TimeSpan(0, 20, 0, 0, 0),
+                            Fecha = new DateTime(2024, 12, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hora = "20:00",
                             ObraID = 4,
                             SalaID = 4
                         },
@@ -536,8 +536,8 @@ namespace Data.Migrations
                         {
                             FuncionID = 19,
                             Disponibilidad = "Si",
-                            Fecha = new DateTime(2023, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = new TimeSpan(0, 18, 0, 0, 0),
+                            Fecha = new DateTime(2024, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hora = "18:00",
                             ObraID = 4,
                             SalaID = 6
                         },
@@ -545,8 +545,8 @@ namespace Data.Migrations
                         {
                             FuncionID = 20,
                             Disponibilidad = "Si",
-                            Fecha = new DateTime(2023, 12, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = new TimeSpan(0, 16, 0, 0, 0),
+                            Fecha = new DateTime(2024, 12, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hora = "16:00",
                             ObraID = 4,
                             SalaID = 5
                         },
@@ -554,8 +554,8 @@ namespace Data.Migrations
                         {
                             FuncionID = 21,
                             Disponibilidad = "Si",
-                            Fecha = new DateTime(2023, 12, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = new TimeSpan(0, 20, 0, 0, 0),
+                            Fecha = new DateTime(2024, 12, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hora = "20:00",
                             ObraID = 5,
                             SalaID = 2
                         },
@@ -563,8 +563,8 @@ namespace Data.Migrations
                         {
                             FuncionID = 22,
                             Disponibilidad = "Si",
-                            Fecha = new DateTime(2023, 12, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = new TimeSpan(0, 18, 0, 0, 0),
+                            Fecha = new DateTime(2024, 12, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hora = "18:00",
                             ObraID = 5,
                             SalaID = 1
                         },
@@ -572,8 +572,8 @@ namespace Data.Migrations
                         {
                             FuncionID = 23,
                             Disponibilidad = "Si",
-                            Fecha = new DateTime(2023, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = new TimeSpan(0, 16, 0, 0, 0),
+                            Fecha = new DateTime(2024, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hora = "16:00",
                             ObraID = 5,
                             SalaID = 5
                         },
@@ -581,8 +581,8 @@ namespace Data.Migrations
                         {
                             FuncionID = 24,
                             Disponibilidad = "Si",
-                            Fecha = new DateTime(2023, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = new TimeSpan(0, 20, 0, 0, 0),
+                            Fecha = new DateTime(2024, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hora = "20:00",
                             ObraID = 6,
                             SalaID = 2
                         },
@@ -590,8 +590,8 @@ namespace Data.Migrations
                         {
                             FuncionID = 25,
                             Disponibilidad = "Si",
-                            Fecha = new DateTime(2023, 12, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = new TimeSpan(0, 18, 0, 0, 0),
+                            Fecha = new DateTime(2024, 12, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hora = "18:00",
                             ObraID = 6,
                             SalaID = 4
                         },
@@ -599,8 +599,8 @@ namespace Data.Migrations
                         {
                             FuncionID = 26,
                             Disponibilidad = "Si",
-                            Fecha = new DateTime(2023, 12, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = new TimeSpan(0, 16, 0, 0, 0),
+                            Fecha = new DateTime(2024, 12, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hora = "16:00",
                             ObraID = 6,
                             SalaID = 3
                         },
@@ -608,8 +608,8 @@ namespace Data.Migrations
                         {
                             FuncionID = 27,
                             Disponibilidad = "Si",
-                            Fecha = new DateTime(2023, 12, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = new TimeSpan(0, 10, 0, 0, 0),
+                            Fecha = new DateTime(2024, 12, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hora = "10:00",
                             ObraID = 6,
                             SalaID = 6
                         },
@@ -617,8 +617,8 @@ namespace Data.Migrations
                         {
                             FuncionID = 28,
                             Disponibilidad = "Si",
-                            Fecha = new DateTime(2023, 12, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = new TimeSpan(0, 10, 0, 0, 0),
+                            Fecha = new DateTime(2024, 12, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hora = "10:00",
                             ObraID = 6,
                             SalaID = 4
                         },
@@ -626,8 +626,8 @@ namespace Data.Migrations
                         {
                             FuncionID = 29,
                             Disponibilidad = "Si",
-                            Fecha = new DateTime(2023, 12, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = new TimeSpan(0, 16, 0, 0, 0),
+                            Fecha = new DateTime(2024, 12, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hora = "16:00",
                             ObraID = 6,
                             SalaID = 2
                         },
@@ -635,8 +635,8 @@ namespace Data.Migrations
                         {
                             FuncionID = 30,
                             Disponibilidad = "Si",
-                            Fecha = new DateTime(2023, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hora = new TimeSpan(0, 20, 0, 0, 0),
+                            Fecha = new DateTime(2024, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hora = "20:00",
                             ObraID = 7,
                             SalaID = 5
                         });
@@ -684,7 +684,7 @@ namespace Data.Migrations
                             ObraID = 1,
                             Director = "Boaz Berman",
                             Duración = "90 minutos",
-                            Imagen = "https://media.discordapp.net/attachments/1193559955001847920/1209597906240147507/impulso.jpg?ex=65e780d6&is=65d50bd6&hm=87edcb468bd5850e48105c46ba67f5c3cd5698f3497ad004810f1426484517c9&=&format=webp&width=563&height=676",
+                            Imagen = "https://imagenesteatro.s3.amazonaws.com/Imagenes/impulso.jpg",
                             Precio = 12m,
                             Sinopsis = "Impulso cuenta la historia del viaje de la vida a través de la perspectiva del ritmo y el movimiento. El espectáculo explora los diferentes estados de la vida y las emociones que conviven en ella. El show se caracteriza por tener una mezcla ecléctica musical y rítmica de todas las partes del mundo, oscilando desde patrones que provienen de las percusiones tradicionales africanas, hasta beats electrónicos más contemporáneos. Los artistas conjugan cuerpo y mente como instrumentos, creando ritmos y movimientos hipnotizantes que dejan al espectador sin aliento. El latido o pulso es el tema central del espectáculo, representando el ritmo de la vida en sí mismo. Los artistas utilizan sus propios ritmos como punto de partida, construyendo ritmos y movimientos complejos que reflejan los momentos ascendentes y descendentes del viaje de la vida. Emociones y sensaciones: Impulso es un gaudeamus sensorial con colores vibrantes, movimientos dinámicos y acompasados ritmos que dejan al público completamente pletórico de energía e inspiración. El espectáculo captura todo un enorme abanico de emociones y experiencias humanas, que hacen de Impulso toda una fiesta del ritmo; un show cautivador que lleva al espectador a realizar un viaje a través de los ritmos de la vida.",
                             Titulo = "Impulso"
@@ -694,7 +694,7 @@ namespace Data.Migrations
                             ObraID = 2,
                             Director = "Juan Carlos Rubio",
                             Duración = "105 minutos",
-                            Imagen = "https://cdn.discordapp.com/attachments/1193559955001847920/1209597906542268477/caminoAlZoo.jpg?ex=65e780d6&is=65d50bd6&hm=7c6b5d492436dac2af1eb0913d44ffa8ec1619bf44d440bcfd9626c9660dbea2&",
+                            Imagen = "https://imagenesteatro.s3.amazonaws.com/Imagenes/caminoAlZoo.jpg",
                             Precio = 16m,
                             Sinopsis = "A pesar de ser pareja, la vida cotidiana de Peter y Ann está marcada por la incomunicación y la soledad. Rehuyendo el intento de Ann por afrontar la situación, Peter decide pasar el día en el zoológicos de Central Park. Allí conocerá a Jerry, un excéntrico personaje que le obliga a escuchar sus historias hasta la última y más espeluznante de todas: el motivo real de su visita al zoo.",
                             Titulo = "Camino al Zoo"
@@ -704,7 +704,7 @@ namespace Data.Migrations
                             ObraID = 3,
                             Director = "Magüi Mira",
                             Duración = "80 minutos",
-                            Imagen = "https://media.discordapp.net/attachments/1193559955001847920/1210266592341000192/salome.jpeg?ex=65e9ef99&is=65d77a99&hm=6eae7db6490a2e70e85bdd038e5d994f9db03e1fe3736e957d77dd2e30316a3c&=&format=webp&width=430&height=609",
+                            Imagen = "https://imagenesteatro.s3.amazonaws.com/Imagenes/salome.jpeg",
                             Precio = 25m,
                             Sinopsis = "Salomé es Historia. Historia brutal. Este cuento lo pueblan personas que han existido y se han cruzado en las calles. En los primero años del Siglo I de nuestra Era, los romanos continúan invadiendo las tierras que rodean el Mediterráneo. Colocan monarcas y dictadores salvajes para someter a sus gentes. Llegan a Judea; y allí una princesa, Salomé, apoya en secreto a los rebeldes que resisten al gobierno del Rey Herodes, un títere corrupto nombrado por Roma; un hombre sin moral que gobierna sin ley. Juan El Bautista, líder espiritual de su pueblo, grita contra el invasor y se descarna cautivo en la prisión del Palacio de Herodes. Da la vida por un Tiempo Nuevo. Es un Profeta; dice que la esperanza, el aliento de todos los sueños; y enciende el deseo de la Princesa. Salomé, perdida en la cabeza de su amado Juan El Bautista, sufre; rechazada por él se transforma en una mujer sangrante. Salomé, expresión del poder sensual absoluto, extrema su deseo por El Bautista; un deseo que se desborda en muerte. El amor y la muerte viven en un permanente abrazo y Salomé rompe la línea roja que la lleva al delirio. Inducida por su madre, la Reina Herodías, se atreve a pedir a su padrastro, el Rey, la cabeza del Bautista. Herodías es una mujer usada y abusada por el poder; una mujer con necesidad de libertad. Herodías va dando tumbos en una tierra de represiones que ignora y lapida a las mujeres si abandonan la estricta moral. Ella se arrastra por una vida imposible envuelta en sexo, en alcohol y desvaríos. Y más arriba Sirio, esa estrella, la más brillante del cielo, señal de vida sobre un planeta que se destruye de guerra en guerra y de dios en dios. Guerras armadas por los Herodes de hoy. Ayer y hoy en un mismo tiempo. Sirio, esa energía pura que nos puede transformar. Y abajo, en las profundidades de las cloacas, la Guardia Real, excremento del poder que se empeña en proteger al país de las mujeres ignorantes y viciosas. Tapan con velos sus cuerpos dejándolas sin existencia. El sexo tiene el poder de mover el mundo, amarlo y destruirlo. Y ese poder se llama Salomé.",
                             Titulo = "Salomé"
@@ -714,7 +714,7 @@ namespace Data.Migrations
                             ObraID = 4,
                             Director = "Juan Carlos Rubio",
                             Duración = "100 minutos",
-                            Imagen = "https://media.discordapp.net/attachments/1193559955001847920/1210266590348714094/elNovioDeEspana.jpg?ex=65e9ef98&is=65d77a98&hm=41d00d59ba7d0370200afb39d98ae8df6238c67a4b5e3d033a020c931185137a&=&format=webp&width=431&height=609",
+                            Imagen = "https://imagenesteatro.s3.amazonaws.com/Imagenes/elNovioDeEspa%C3%B1a.jpg",
                             Precio = 17m,
                             Sinopsis = "Nos encontramos en 1952. El internacionalmente conocido cantante vasco Luis Mariano se encuentra en España rodando Violetas Imperiales. Tras el enorme éxito de El Sueño de Andalucía y La Bella de Cádiz, la cantante y actriz Carmen Sevilla y él vuelven a protagonizar una película musical. Entre los dos existe una entrañable amistad que ambos saben que no puede convertirse en amor, dadas las evidentes preferencias sexuales del cantante. Pero Luis Mariano está dispuesto a «heterosexualizar» su imagen, zanjar las habladurías y pedir a la actriz andaluza que se case con él. Se convertirá en un «hombre de verdad». Carmen Sevilla no comprende la repentina ansiedad de Luis Mariano por «normalizar» su vida. Y es que el tenor esconde una poderosa razón: sus padres, republicanos exiliados al comienzo de la Guerra Civil, quieren regresar a España. Y él desea pedirle a Franco que se lo permita, renovando sus pasaporte. Y si para alcanzar ese fin ha de renunciar a su verdadera condición sexual, está dispuesto a todo. La actriz se niega a participar en un matrimonio de conveniencia, pero promete ayudarle a conseguir sus objetivos. El 18 de julio, Franco dará su tradicional fiesta en el Palacio de La Granja. ¿No es ese el momento perfecto para que Luis Mariano pueda conseguir su objetivo?",
                             Titulo = "El novio de España"
@@ -724,7 +724,7 @@ namespace Data.Migrations
                             ObraID = 5,
                             Director = "Mingo Ruano",
                             Duración = "75 minutos",
-                            Imagen = "https://media.discordapp.net/attachments/1193559955001847920/1210266589857841152/cuentoDeNavidad.jpg?ex=65e9ef98&is=65d77a98&hm=37161ae32fc01a46296aa1e7bfebc2047d9bc535da97509437960c735e283de6&=&format=webp&width=440&height=609",
+                            Imagen = "https://imagenesteatro.s3.amazonaws.com/Imagenes/cuentoDeNavidad.jpg",
                             Precio = 12m,
                             Sinopsis = "Cuento de Navidad, el clásico de Charles Dickens se presenta en una versión que ambienta la acción en el Londres de los años 30. El Sr. Ebenezer Scrooge un hombre avaro, tacaño y solitario, que nunca celebra la Navidad, recibe la visita del fantasma de su antiguo socio, muerto años atrás. Éste le cuenta que, por haber sido avaro en la vida, toda su maldad se ha convertido en una larga y pesada cadena que deberá arrastrar para siempre. Le anuncia que le espera un destino aún peor, y le avisa de que tendrá una última oportunidad de cambiar cuando reciba la visita de los tres Espíritus de la Navidad. El Sr. Scrooge desafiando la predicción, no se asusta por la noticia y esa noche aparecen los tres Espíritus Navideños: el Pasado, que le hace recordar su vida infantil y juvenil llena de melancolía y añoranza, antes de su adicción al trabajo y su desmedido afán por el dinero; el del Presente que le hace ver la actual situación de la familia de su empleado Bob, que a pesar de su pobreza y de la enfermedad de su hijo Tim, celebra la Navidad. El terrible y sombrío espíritu del Futuro le muestra el destino que le deparará su vida enfrentándose al saqueo de su casa por los pobres, la muerte del pequeño Tim y lo más espantoso: su propia tumba, ante la cual el Sr. Scrooge se horroriza de tal forma que suplica una nueva oportunidad para cambiar. El avaro despierta de su pesadilla y se convierte en un hombre generoso y amable, que celebra la Navidad y ayuda a quienes le rodean.",
                             Titulo = "Cuento de Navidad"
@@ -734,7 +734,7 @@ namespace Data.Migrations
                             ObraID = 6,
                             Director = "Josema Yuste",
                             Duración = "95 minutos",
-                            Imagen = "https://media.discordapp.net/attachments/1193559955001847920/1210266591628103740/queDiosNoNosPille.jpg?ex=65e9ef99&is=65d77a99&hm=8ab3a9eee0fe2cb99e876e1223216b947d4e22b2441c4b20df7792b09ec85d07&=&format=webp",
+                            Imagen = "https://imagenesteatro.s3.amazonaws.com/Imagenes/queDiosNoNosPille.jpg",
                             Precio = 17m,
                             Sinopsis = "El padre Beltrán (Josema Yuste) visita a la marquesa Pilar (Esther del Prado), que posee un valioso cuadro del siglo XVII. El inspector (Santiago Urrialde) ha chequeado las medidas de seguridad y descarta que un ladrón pueda llevárselo. Pero al sacerdote no se le escapa una, y sospecha que el fontanero Floren (Javier Losán) está planeando un robo. Chapucero, sí, pero robo al fin y al cabo... ¡Bienaventurados los espectadores de esta comedia! Pues ellos disfrutarán de un enredo con sospechas, polis, cacos, amor, estafas, tentaciones y hasta un cirio... Aquí todos tienen pecados que ocultar... y siempre será mejor... Que Dios nos pille confesados.",
                             Titulo = "Que Dios nos pille confesados"
@@ -744,7 +744,7 @@ namespace Data.Migrations
                             ObraID = 7,
                             Director = "Javier Posadas",
                             Duración = "120 minutos",
-                            Imagen = "https://media.discordapp.net/attachments/1193559955001847920/1210266591220998305/losCadaveresNoHablan.jpg?ex=65e9ef99&is=65d77a99&hm=66334ef69feb8982b4620390df4ec2388a0a9995b72c96774156c8a17edb35a1&=&format=webp",
+                            Imagen = "https://imagenesteatro.s3.amazonaws.com/Imagenes/losCadaveresNoHablan.jpg",
                             Precio = 16m,
                             Sinopsis = "El Marqués de Milford Haven Se ha suicidado en su habitación con las puertas y las ventanas cerradas por dentro. ¿Realmente se suicidó, o fue un asesinato? Juega tu papel, atiende a las escenas y habla con los actores para descubrir el misterio que rodea la muerte del Marqués.",
                             Titulo = "Los cadáveres no hablan"
@@ -1063,6 +1063,47 @@ namespace Data.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Models.Pedido", b =>
+                {
+                    b.Property<int>("PedidoID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PedidoID"));
+
+                    b.Property<DateTime?>("Fecha")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("FuncionID")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("NumeroDeReservas")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("Precio")
+                        .IsRequired()
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("PrecioTotal")
+                        .IsRequired()
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("UsuarioID")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.HasKey("PedidoID");
+
+                    b.HasIndex("FuncionID");
+
+                    b.HasIndex("UsuarioID");
+
+                    b.ToTable("Pedidos");
+                });
+
             modelBuilder.Entity("Models.Reserva", b =>
                 {
                     b.Property<int>("ReservaID")
@@ -1082,30 +1123,22 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("int");
 
+                    b.Property<int?>("PedidoID")
+                        .HasColumnType("int");
+
                     b.Property<int?>("SalaID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UsuarioID")
                         .HasColumnType("int");
 
                     b.HasKey("ReservaID");
 
+                    b.HasIndex("PedidoID");
+
                     b.HasIndex("SalaID");
 
                     b.ToTable("Reservas");
-
-                    b.HasData(
-                        new
-                        {
-                            ReservaID = 1,
-                            FunciónID = 1,
-                            NumeroColumna = 1,
-                            NumeroFila = 1
-                        },
-                        new
-                        {
-                            ReservaID = 2,
-                            FunciónID = 1,
-                            NumeroColumna = 6,
-                            NumeroFila = 7
-                        });
                 });
 
             modelBuilder.Entity("Models.Sala", b =>
@@ -1137,22 +1170,22 @@ namespace Data.Migrations
                         {
                             SalaID = 1,
                             Nombre = "Sala 1",
-                            NumeroColumnas = 9,
-                            NumeroFilas = 10
+                            NumeroColumnas = 13,
+                            NumeroFilas = 6
                         },
                         new
                         {
                             SalaID = 2,
                             Nombre = "Sala 2",
                             NumeroColumnas = 14,
-                            NumeroFilas = 6
+                            NumeroFilas = 9
                         },
                         new
                         {
                             SalaID = 3,
                             Nombre = "Sala 3",
-                            NumeroColumnas = 8,
-                            NumeroFilas = 9
+                            NumeroColumnas = 12,
+                            NumeroFilas = 12
                         },
                         new
                         {
@@ -1165,8 +1198,8 @@ namespace Data.Migrations
                         {
                             SalaID = 5,
                             Nombre = "Sala 5",
-                            NumeroColumnas = 7,
-                            NumeroFilas = 12
+                            NumeroColumnas = 12,
+                            NumeroFilas = 7
                         },
                         new
                         {
@@ -1253,11 +1286,36 @@ namespace Data.Migrations
                     b.Navigation("Obra");
                 });
 
+            modelBuilder.Entity("Models.Pedido", b =>
+                {
+                    b.HasOne("Models.Funcion", "Funcion")
+                        .WithMany("Pedidos")
+                        .HasForeignKey("FuncionID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Models.Usuario", "Usuario")
+                        .WithMany("Pedidos")
+                        .HasForeignKey("UsuarioID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Funcion");
+
+                    b.Navigation("Usuario");
+                });
+
             modelBuilder.Entity("Models.Reserva", b =>
                 {
+                    b.HasOne("Models.Pedido", "Pedido")
+                        .WithMany("Reservas")
+                        .HasForeignKey("PedidoID");
+
                     b.HasOne("Models.Sala", "Sala")
                         .WithMany()
                         .HasForeignKey("SalaID");
+
+                    b.Navigation("Pedido");
 
                     b.Navigation("Sala");
                 });
@@ -1267,6 +1325,11 @@ namespace Data.Migrations
                     b.Navigation("ObraActores");
                 });
 
+            modelBuilder.Entity("Models.Funcion", b =>
+                {
+                    b.Navigation("Pedidos");
+                });
+
             modelBuilder.Entity("Models.Obra", b =>
                 {
                     b.Navigation("Funciones");
@@ -1274,9 +1337,19 @@ namespace Data.Migrations
                     b.Navigation("ObraActores");
                 });
 
+            modelBuilder.Entity("Models.Pedido", b =>
+                {
+                    b.Navigation("Reservas");
+                });
+
             modelBuilder.Entity("Models.Sala", b =>
                 {
                     b.Navigation("Funciones");
+                });
+
+            modelBuilder.Entity("Models.Usuario", b =>
+                {
+                    b.Navigation("Pedidos");
                 });
 #pragma warning restore 612, 618
         }

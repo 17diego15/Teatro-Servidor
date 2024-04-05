@@ -10,77 +10,145 @@ namespace Controllers
     public class UsuarioController : ControllerBase
     {
         private readonly UsuarioService _usuarioService;
+        private readonly ILogger<UsuarioController> _logger;
 
-        public UsuarioController(UsuarioService usuarioService)
+        public UsuarioController(UsuarioService usuarioService, ILogger<UsuarioController> logger)
         {
             _usuarioService = usuarioService;
+            _logger = logger;
+
         }
 
         [HttpGet]
         public ActionResult<List<Usuario>> GetAll()
         {
-            return _usuarioService.GetAll();
+            try
+            {
+                _logger.LogInformation("Solicitando la lista de todas los usuarios.");
+                return _usuarioService.GetAll();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error obteniendo todas los usuarios.");
+                return StatusCode(500, "Un error ocurrió al obtener la lista de usuarios.");
+            }
         }
 
         [HttpGet("{id}")]
         public ActionResult<Usuario> Get(int id)
         {
-            var usuario = _usuarioService.Get(id);
+            try
+            {
+                _logger.LogInformation($"Buscando usuario con ID: {id}");
+                var usuario = _usuarioService.Get(id);
 
-            if (usuario == null)
-                return NotFound();
+                if (usuario == null)
+                {
+                    _logger.LogWarning($"Usuario con ID: {id} no encontrada.");
+                    return NotFound();
+                }
 
-            return usuario;
+                return usuario;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error obteniendo el usuario con ID: {id}.");
+                return StatusCode(500, "Un error ocurrió al obtener el usuario.");
+            }
         }
 
         [HttpPost("login")]
-        public ActionResult Login(string nombreUsuario, string contraseña)
+        public ActionResult Login([FromBody] UsuarioDTO usuariodto)
         {
-            var usuario = _usuarioService.ValidateCredentials(nombreUsuario, contraseña);
+            try
+            {
+                _logger.LogInformation($"Intento de inicio de sesión del usuario: {usuariodto.Nombre}");
+                var usuario = _usuarioService.ValidateCredentials(usuariodto);
 
-            if (usuario != null)
-            {
-                return Ok(usuario);
+                if (usuario != null)
+                {
+                    _logger.LogInformation($"Usuario {usuariodto.Nombre} autenticado correctamente");
+                    return Ok(usuario);
+                }
+                else
+                {
+                    _logger.LogInformation($"Autenticación fallida para el usuario: {usuariodto.Nombre}");
+                    return Unauthorized("Credenciales incorrectas");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return Unauthorized("Credenciales incorrectas");
+                _logger.LogError(ex, "Error al realizar el inicio de sesión.");
+                return StatusCode(500, "Se produjo un error al intentar iniciar sesión.");
             }
         }
 
         [HttpPost]
         public IActionResult Create(Usuario usuario)
         {
-            _usuarioService.Add(usuario);
-            return CreatedAtAction(nameof(Get), new { id = usuario.UsuarioID }, usuario);
+            try
+            {
+                _logger.LogInformation($"Creando nuevo usuario con ID: {usuario.UsuarioID}");
+                _usuarioService.Add(usuario);
+                return CreatedAtAction(nameof(Get), new { id = usuario.UsuarioID }, usuario);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error obteniendo al crear el usuario.");
+                return StatusCode(500, "Un error ocurrió al crear el usuario.");
+            }
         }
 
         [HttpPut("{id}")]
         public IActionResult Put(int id, Usuario usuario)
         {
-            if (id != usuario.UsuarioID)
-                return BadRequest();
+            try
+            {
+                _logger.LogInformation($"Actualizando usuario con ID: {id}");
+                if (id != usuario.UsuarioID)
+                {
+                    _logger.LogWarning($"No se puede actualizar: Usuario con ID: {id} no encontrada.");
+                    return BadRequest();
+                }
 
-            var existingUsuario = _usuarioService.Get(id);
-            if (existingUsuario is null)
-                return NotFound();
+                var existingUsuario = _usuarioService.Get(id);
+                if (existingUsuario is null)
+                    return NotFound();
 
-            _usuarioService.Update(usuario);
+                _usuarioService.Update(usuario);
 
-            return NoContent();
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error al modificar el usuario con ID: {id}.");
+                return StatusCode(500, "Un error ocurrió al modificar el usuario.");
+            }
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var usuario = _usuarioService.Get(id);
+            try
+            {
+                _logger.LogInformation($"Eliminando usuario con ID: {id}");
+                var usuario = _usuarioService.Get(id);
 
-            if (usuario is null)
-                return NotFound();
+                if (usuario is null)
+                {
+                    _logger.LogWarning($"No se puede eliminar: Usuario con ID: {id} no encontrado.");
+                    return NotFound();
+                }
 
-            _usuarioService.Delete(id);
+                _usuarioService.Delete(id);
 
-            return NoContent();
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error obteniendo al eliminar el usuario con ID: {id}.");
+                return StatusCode(500, "Un error ocurrió al eliminar el usuario.");
+            }
         }
     }
 }

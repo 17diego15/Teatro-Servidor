@@ -4,7 +4,7 @@ namespace Data;
 
 public interface IReservaRepository
 {
-    List<Reserva> GetAll();
+    List<Reserva> GetAll(int funcionID);
     Reserva? Get(int id);
     List<Reserva> GetFuncion(int id);
     void Add(List<Reserva> reservas);

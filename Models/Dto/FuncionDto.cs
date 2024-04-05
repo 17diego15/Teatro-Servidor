@@ -7,9 +7,10 @@ public class FuncionDto
     public int ObraID { get; set; }
     public int SalaID { get; set; }
     public DateTime? Fecha { get; set; }
-    public TimeSpan? Hora { get; set; }
+    public string? Hora { get; set; }
     public string? Disponibilidad { get; set; }
-    public List<ActorDto> Actores { get; set; } = new List<ActorDto>();
+    public decimal AsientosDisponibles {get; set;}
+    public decimal AsientosRestantes {get; set;}
     public ObraDto? Obra { get; set; }
     public SalaDto? Sala { get; set; }
 }

@@ -12,7 +12,9 @@ public class Reserva
 
     [Required]
     public int? NumeroColumna { get; set; }
-
+    public int? UsuarioID { get; set; }
     public virtual Sala? Sala { get; set; }
+    public int? PedidoID { get; set; }
+    public virtual Pedido? Pedido { get; set; }
 }
 

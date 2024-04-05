@@ -10,5 +10,5 @@ public interface IUsuarioRepository
     void Add(Usuario usuario);
     void Delete(int id);
     void Update(Usuario usuario);
-    Usuario GetLogin(string nombreUsuario, string contraseña);
+    Usuario GetLogin(UsuarioDTO usuarioDto);
 }
