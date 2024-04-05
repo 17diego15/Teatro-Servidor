@@ -18,8 +18,7 @@ Log.Logger = new LoggerConfiguration()
 builder.Host.UseSerilog();
 
 
-var isRunningInDocker = Environment.GetEnvironmentVariable("DOCKER_CONTAINER") == "true";
-var keyString = isRunningInDocker ? "ServerDB_Docker" : "ServerDB_Local";
+var keyString = "ServerDB";
 var connectionString = builder.Configuration.GetConnectionString(keyString);
 
 builder.Services.AddControllers();
@@ -50,13 +49,22 @@ builder.Services.AddScoped<ISalaRepository, SalaRepository>();
 
 builder.Services.AddScoped<PedidoService>();
 builder.Services.AddScoped<IPedidoRepository, PedidoRepository>();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("MyCorsPolicy",
+        policy => policy
+            .WithOrigins("*") 
+            .AllowAnyMethod() 
+            .AllowAnyHeader()); 
+});
+
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
 //app.UseHttpsRedirection();
-
+app.UseCors("MyCorsPolicy");
 app.UseSwagger();
 app.UseSwaggerUI();
 
