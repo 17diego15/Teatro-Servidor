@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dotnetapp
+  labels:
+    app: dotnetapp
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: dotnetapp
+    tier: frontend
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dotnetapp
+  labels:
+    app: dotnetapp
+spec:
+  selector:
+    matchLabels:
+      app: dotnetapp
+      tier: frontend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: dotnetapp
+        tier: frontend
+    spec:
+      containers:
+      - name: docker-compose-dotnet-core-and-mssql-app
+        image: diego1708/teatrofront
+        ports:
+        - containerPort: 80

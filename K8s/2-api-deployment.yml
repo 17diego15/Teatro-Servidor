@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+  labels:
+    app: api
+spec:
+  selector:
+    matchLabels:
+      app: api
+      tier: frontend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: api
+        tier: frontend
+    spec:
+      containers:
+      - name: api-net
+        image:  diego1708/teatroback
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api
+  labels:
+    app: api
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: api
+    tier: frontend
+  type: LoadBalancer
